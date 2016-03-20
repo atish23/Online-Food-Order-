@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FoodApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+	<link href="assets/bootstrap.min.css" rel="stylesheet">
+	<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+	<link href="assets/settings.css" rel="stylesheet">		
+	<!-- FlexSlider Css -->
+	<link rel="stylesheet" href="assets/flexslider.css" media="screen" />
+	<!-- Portfolio CSS -->
+	<link href="assets/prettyPhoto.css" rel="stylesheet">
+	<!-- Font awesome CSS -->
+	<link href="assets/font-awesome.min.css" rel="stylesheet">	
+	<!-- Custom Less -->
+	<link href="assets/less-style.css" rel="stylesheet">	
+	<!-- Custom CSS -->
+	<link href="assets/style.css" rel="stylesheet">
+	<!--[if IE]><link rel="stylesheet" href="css/ie-style.css"><![endif]-->
+			<!-- jQuery -->
+	<script src="assets/jquery.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="assets/bootstrap.min.js"></script>
+	<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+	<script type="text/javascript" src="assets/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="assets/jquery.themepunch.revolution.min.js"></script>
+	<!-- FLEX SLIDER SCRIPTS  -->
+	<script defer src="assets/jquery.flexslider-min.js"></script>
+	<!-- Pretty Photo JS -->
+	<script src="assets/jquery.prettyPhoto.js"></script>
+	<!-- Respond JS for IE8 -->
+	<script src="assets/respond.min.js"></script>
+	<!-- HTML5 Support for IE -->
+	<script src="assets/html5shiv.js"></script>
+	<!-- Custom JS -->
+	<script src="assets/custom.js"></script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="#">
+</head>
+<body>
+<!-- Page Wrapper -->
+	<div class="wrapper">
+		<%= render 'shared/header'%>
+		<%= yield %>
+		<%= render 'shared/footer'%>
+	</div>
+</body>
+</html>

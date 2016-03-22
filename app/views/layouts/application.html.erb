@@ -3,38 +3,10 @@
 <head>
   <title>FoodApp</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'jquery', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'bootstrap.min', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'jquery.themepunch.tools.min', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'jquery.themepunch.revolution.min', 'data-turbolinks-track' => true %>
-
-	<%= javascript_include_tag 'jquery.prettyPhoto', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'respond.min', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'html5shiv', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag 'custom', 'data-turbolinks-track' => true %>
-
-                    
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>                    
   <%= csrf_meta_tags %>
-	<link href="assets/bootstrap.min.css" rel="stylesheet">
-	<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-	<link href="assets/settings.css" rel="stylesheet">		
-
-	<!-- Portfolio CSS -->
-	<link href="assets/prettyPhoto.css" rel="stylesheet">
-	<!-- Font awesome CSS -->
-	<!-- Custom Less -->
-	<link href="assets/less-style.css" rel="stylesheet">	
-	<!-- Custom CSS -->
-	<link href="assets/style.css" rel="stylesheet">
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="#">
 </head>
 <body>
-<!-- Page Wrapper -->
-<!-- <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p> -->
 	<div class="wrapper">
 		<%= render 'shared/header'%>
 		<%= yield %>

@@ -14,6 +14,7 @@ gem 'jquery-ui-rails'
 gem 'less-rails-bootstrap'
 gem 'font-awesome-rails'
 gem 'therubyracer'
+gem 'pry'
 
 
 group :development, :test do

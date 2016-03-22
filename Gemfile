@@ -11,9 +11,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'jquery-ui-rails'
-gem 'less-rails-bootstrap'
 gem 'font-awesome-rails'
-gem 'therubyracer'
+gem 'rails_admin'
+gem "paperclip", "~> 4.3"
 
 
 group :development, :test do

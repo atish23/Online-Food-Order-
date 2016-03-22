@@ -11,7 +11,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20160322111155) do
+
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.float    "price"
+    t.string   "status"
+    t.integer  "category_id"
+    t.integer  "prep_time"
+    t.text     "sales"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "food_image_file_name"
+    t.string   "food_image_content_type"
+    t.integer  "food_image_file_size"
+    t.datetime "food_image_updated_at"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "quantity"
+    t.integer  "food_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "status",         default: "Pending"
+    t.integer  "total"
+    t.integer  "vat"
+    t.integer  "delivery_cost"
+    t.integer  "user_id"
+    t.string   "transaction_id"
+    t.string   "invoice"
+    t.integer  "pickup_time"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

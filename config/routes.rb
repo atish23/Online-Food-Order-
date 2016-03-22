@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
+
   
+
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   devise_for :users
   
@@ -8,7 +12,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'static_pages#home'
-
+   get 'foods' => 'foods#index'
   # Example of regular route:
      get 'users/:id' => 'users#show' , as: "users_show"
 

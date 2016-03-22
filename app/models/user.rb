@@ -5,7 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
+
   validates :firstname, :presence => true
   validates :lastname, :presence => true
+
+ 	has_many :orders, dependent: :destroy
+
 
 end

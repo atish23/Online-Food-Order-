@@ -1,1 +1,99 @@
 <%= render 'static_pages/slider'%>
+				<!-- menu Start -->
+				
+				<div class="menu padd">
+					<div class="container">
+						<!-- Default Heading -->
+						<div class="default-heading">
+							<!-- Crown image -->
+							<img class="img-responsive" src="img/crown.png" alt="" />
+							<%= image_tag "assets/crown.jpg",class: "img-responsive"%>
+							<!-- Heading -->
+							<h2>Menu</h2>
+							<!-- Paragraph -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							<!-- Border -->
+							<div class="border"></div>
+						</div>
+						<!-- Menu content container -->
+						<div class="menu-container">
+							<div class="row">
+							<% @categories.each do |category|%>
+								<div class="col-md-4 col-sm-4">
+									<!-- Menu header -->
+									<div class="menu-head">
+										<!-- Image for menu item -->
+										<%= image_tag category.category_image.url,class: "img-responsive"%>
+										<!-- Menu title / Heading -->
+										<h3><%= category.title%></h3>
+										<!-- Border for above heading -->
+										<div class="title-border br-red"></div>
+									</div>
+									<!-- Menu item details -->
+									<div class="menu-details br-red">
+										<!-- Menu list -->
+										<ul class="list-unstyled">
+										<% category.foods.each do |product|%>
+											<li>
+												<div class="menu-list-item">
+													<!-- Icon -->
+													<i class="fa fa-angle-right"></i>
+													<%= link_to product.name,"#"%>
+													<!-- Price badge -->
+													<span class="pull-right">$<%= product.price%></span>
+													<div class="clearfix"></div>
+												</div>
+											</li>
+										<%end%>
+										</ul>
+									</div><!-- / Menu details end -->
+								</div>
+							<%end%>
+							</div>
+						</div> <!-- /Menu container end -->
+					</div>
+				</div>
+				
+				<!-- Menu End -->
+				<!-- Pricing Start -->
+				
+				<div class="pricing padd">
+					<div class="container">
+						<!-- Default Heading -->
+						<div class="default-heading">
+							<!-- Crown image -->
+							<img class="img-responsive" src="img/crown.png" alt="" />
+							<!-- Heading -->
+							<h2>Offer Price</h2>
+							<!-- Paragraph -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+							<!-- Border -->
+							<div class="border"></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6">
+								<!-- Pricing list Item -->
+								<div class="pricing-item">
+									<!-- Image -->
+									<a href="#"><img class="img-responsive img-thumbnail" src="img/dish/dish3.jpg" alt="" /></a>
+									<!-- Pricing item details -->
+									<div class="pricing-item-details">
+										<!-- Heading -->
+										<h3><a href="#">Mix-Veg Fried Rice</a></h3>
+										<!-- Paragraph -->
+										<p>These cases are perfectly simple and distil and when nothing adipose slicing consecrate prevents...</p>
+										<!-- Buy link -->
+										<a class="btn btn-danger pull-right" href="#">Order now</a>
+										<div class="clearfix"></div>
+									</div>
+									<!-- Tag -->
+									<span class="hot-tag br-red">$45</span>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Pricing End -->
+				

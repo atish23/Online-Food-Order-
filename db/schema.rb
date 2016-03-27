@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322133941) do
+ActiveRecord::Schema.define(version: 20160327103902) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "category_image_file_name"
+    t.string   "category_image_content_type"
+    t.integer  "category_image_file_size"
+    t.datetime "category_image_updated_at"
   end
 
   create_table "foods", force: :cascade do |t|
@@ -34,6 +38,9 @@ ActiveRecord::Schema.define(version: 20160322133941) do
     t.string   "food_image_content_type"
     t.integer  "food_image_file_size"
     t.datetime "food_image_updated_at"
+    t.string   "short_description"
+    t.float    "sale_price"
+    t.boolean  "active"
   end
 
   create_table "order_items", force: :cascade do |t|

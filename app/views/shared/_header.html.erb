@@ -21,7 +21,7 @@
 								<!-- Header top left content contact -->
 								<div class="header-contact">
 									<!-- Contact number -->
-									<span><i class="fa fa-phone red"></i> 888-888-8888</span>
+									<span><i class="fa fa-phone red"></i> 879-938-57791</span>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
@@ -136,8 +136,10 @@
 									<!-- Collect the nav links, forms, and other content for toggling -->
 									<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 										<ul class="nav navbar-nav">
-											<li><a href="index.html">
-											<%= image_tag 'nav-menu/nav1.jpg', :class => "img-responsive img-rounded",:alt => ""%>Home</a></li>
+											<li>
+											<%= link_to (image_tag 'nav-menu/nav1.jpg', :class => "img-responsive img-rounded",:alt => "")+"Home",root_path%>
+											</li>
+											
 											<li class="dropdown hidden-xs">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag 'nav-menu/nav2.jpg', :class => "img-responsive img-rounded",:alt => ""%> Menu <b class="caret"></b></a>
 												<ul class="dropdown-menu dropdown-md">

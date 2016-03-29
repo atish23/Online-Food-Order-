@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.1'
 
 gem 'rails', '4.2.5'
-#gem 'sqlite3'
-gem 'pg', '~> 0.18.4'
+gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
@@ -19,7 +18,7 @@ gem 'therubyracer'
 gem 'pry'
 gem 'rails_admin'
 gem "paperclip", "~> 4.3"
-gem 'rails_12factor', group: :production
+
 
 
 group :development, :test do
@@ -31,8 +30,8 @@ group :development do
   gem 'spring'
 end
 
-# group :production do
-# 	#gem 'pg', '~> 0.18.4'
-# 	gem 'rails_12factor', '~> 0.0.3'
-# end
+group :production do
+	gem 'pg', '~> 0.18.4'
+	gem 'rails_12factor', '~> 0.0.3'
+end
 

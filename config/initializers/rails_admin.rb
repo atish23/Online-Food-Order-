@@ -37,6 +37,8 @@ RailsAdmin.config do |config|
 
   config.model 'User' do
     edit do
+      field :firstname
+      field :lastname
       field :email
       field :password
       field :password_confirmation

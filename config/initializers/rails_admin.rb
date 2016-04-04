@@ -43,4 +43,36 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Food do
+    edit do
+      # For RailsAdmin >= 0.5.0
+      field :name
+      field :description, :ck_editor
+      field :short_description, :ck_editor
+      field :price
+      field :prep_time
+      field :active
+      field :category
+      field :food_image
+      # For RailsAdmin < 0.5.0
+      # field :description do
+      #   ckeditor true
+      # end
+    end
+  end
+
+  config.model Category do
+    edit do
+      # For RailsAdmin >= 0.5.0
+      field :title
+      field :description, :ck_editor
+      include_all_fields
+    end
+  end
+  
+  
+
+
+  
+
 end

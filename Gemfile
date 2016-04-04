@@ -16,7 +16,7 @@ gem 'therubyracer'
 gem 'pry'
 gem 'rails_admin'
 gem "paperclip", "~> 4.3"
-
+gem 'ckeditor'
 
 
 group :development, :test do

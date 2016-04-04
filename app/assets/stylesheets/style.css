@@ -1064,7 +1064,7 @@ div.ppt { display:none !important; }
  */
 
 .banner {
-	background: url('../img/banner.jpg') center center repeat-x; 
+	background: url('/assets/banner.jpg') center center repeat-x; 
 	text-align: center;
 }
 

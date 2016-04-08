@@ -9,9 +9,9 @@
 								<!-- Header top left content contact -->
 								<div>
 									<% if current_user%>
-									<h7><%= current_user.email%>   <%= link_to "SignOut", destroy_user_session_path,method: :delete%></h7>
+									<span><%= current_user.email%>   <%= link_to "SignOut", destroy_user_session_path,method: :delete%></span>
 									<%else%>
-									<h3><%= link_to "SignIn",new_user_session_path%></h3>
+									<span><%= link_to "SignIn",new_user_session_path%></span>
 									<%end%>
 								</div>
 							</div>
@@ -126,6 +126,7 @@
 											
 											<li class="dropdown hidden-xs">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag 'nav-menu/nav2.jpg', :class => "img-responsive img-rounded",:alt => ""%> Menu <b class="caret"></b></a>
+
 												<ul class="dropdown-menu dropdown-md">
 													<li>
 														<div class="row">

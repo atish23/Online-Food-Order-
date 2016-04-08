@@ -11,7 +11,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331125344) do
+ActiveRecord::Schema.define(version: 20160408132202) do
+
+  create_table "address_types", force: :cascade do |t|
+    t.string "name",        limit: 64, null: false
+    t.string "description"
+  end
+
+  add_index "address_types", ["name"], name: "index_address_types_on_name"
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "address_type_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "adressable_type"
+    t.integer  "addressable_id"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.integer  "state_id"
+    t.string   "state_name"
+    t.string   "zip_code"
+    t.string   "phone"
+    t.string   "alternative_phone"
+    t.boolean  "default"
+    t.boolean  "billing_default"
+    t.boolean  "active"
+    t.integer  "country_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "addresses", ["address_type_id"], name: "index_addresses_on_address_type_id"
+  add_index "addresses", ["addressable_id"], name: "index_addresses_on_addressable_id"
+  add_index "addresses", ["country_id"], name: "index_addresses_on_country_id"
+  add_index "addresses", ["state_id"], name: "index_addresses_on_state_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -63,12 +97,18 @@ ActiveRecord::Schema.define(version: 20160331125344) do
     t.integer  "quantity"
     t.integer  "food_id"
     t.integer  "order_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.decimal  "price"
+    t.decimal  "total"
+    t.string   "state"
+    t.integer  "shipment_id"
   end
 
+  add_index "order_items", ["shipment_id"], name: "index_order_items_on_shipment_id"
+
   create_table "orders", force: :cascade do |t|
-    t.string   "status",         default: "Pending"
+    t.string   "status",          default: "Pending"
     t.integer  "total"
     t.integer  "vat"
     t.integer  "delivery_cost"
@@ -76,9 +116,32 @@ ActiveRecord::Schema.define(version: 20160331125344) do
     t.string   "transaction_id"
     t.string   "invoice"
     t.integer  "pickup_time"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "number"
+    t.string   "ip_address"
+    t.string   "email"
+    t.string   "state"
+    t.integer  "bill_address_id"
+    t.integer  "ship_address_id"
+    t.integer  "coupon_id"
+    t.boolean  "active"
+    t.boolean  "shipped"
+    t.string   "shipments_count"
+    t.datetime "calculated_at"
+    t.datetime "completed_at"
+    t.decimal  "credited_amount"
   end
+
+  add_index "orders", ["bill_address_id"], name: "index_orders_on_bill_address_id"
+  add_index "orders", ["coupon_id"], name: "index_orders_on_coupon_id"
+  add_index "orders", ["ship_address_id"], name: "index_orders_on_ship_address_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", limit: 30, null: false
+  end
+
+  add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160408132202) do
     t.integer  "address_type_id"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "adressable_type"
+    t.string   "addressable_type"
     t.integer  "addressable_id"
     t.string   "address1"
     t.string   "address2"

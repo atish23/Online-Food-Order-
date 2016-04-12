@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   get 'static_pages/about_us', as: :about_us
   get 'orders/checkout', as: :checkout
+  resources :orders
   resources :foods
   get 'users/:id' => 'users#show' , as: "users_show"
   delete "carts/:item_id/", to: "carts#destroy", as: :cart_item_delete
+
+
+  namespace :myaccount do
+    #resources :orders,        only: [:index, :show]
+    resources :addresses
+  end
 end

@@ -3,7 +3,7 @@
 			<div class="banner padd">
 				<div class="container">
 					<!-- Image -->
-					<img class="img-responsive" src="img/crown-white.png" alt="" />
+					<%= image_tag 'crown-white',class: 'img-responsive'%>
 					<!-- Heading -->
 					<h2 class="white">Checkout</h2>
 					<ol class="breadcrumb">
@@ -31,12 +31,15 @@
 					<h4>Shipping & Billing Details</h4>
 						<div class="row">
 							<div class="col-md-7 col-sm-6">
+
 								<!-- Checkout Form -->
+								<%= form_for @order ,class: 'form-horizontal',url: orders_path do |f| %>
 								<form class="form-horizontal" role="form">
 									<div class="form-group">
 										<label for="inputName" class="col-md-2 control-label">Name</label>
 										<div class="col-md-8">
-											<input type="text" class="form-control" id="inputName" placeholder="Name">
+										<%= f.text_field :first_name, class: 'form-control' %>
+										<!-- 	<input type="text" class="form-control" id="inputName" placeholder="Name"> -->
 										</div>
 									</div>            
 									<div class="form-group">
@@ -90,7 +93,7 @@
 											<button type="reset" class="btn btn-default btn-sm">Reset</button>
 										</div>
 									</div>
-								</form>
+								<%end%>
 							</div>
 							<div class="col-md-5 col-sm-6">
 								<!-- Checkout sidebar items -->

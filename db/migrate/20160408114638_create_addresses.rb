@@ -4,7 +4,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.references :address_type, index: true, foreign_key: true
       t.string :first_name
       t.string :last_name
-      t.string :adressable_type
+      t.string :addressable_type
       t.references :addressable, index: true, foreign_key: true
       t.string :address1
       t.string :address2

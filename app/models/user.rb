@@ -25,7 +25,29 @@ class User < ActiveRecord::Base
                                           as:         :addressable,
                                           class_name: 'Address'
 
-  has_many     :shipping_addresses,       -> { where(active: true) },
+  has_many    :shipping_addresses,       -> { where(active: true) },
                                           as:         :addressable,
                                           class_name: 'Address'
+  has_many     :orders
+  has_many     :finished_orders,           -> { where(state: ['complete', 'paid']) },  class_name: 'Order'
+  has_many    :user_roles,                dependent: :destroy
+  has_many    :roles,                     through: :user_roles
+  
+  accepts_nested_attributes_for :addresses, :user_roles
+
+  # Returns the default billing address if it exists.   otherwise returns the shipping address
+  #
+  # @param [none]
+  # @return [ Address ]
+  def billing_address
+    default_billing_address ? default_billing_address : shipping_address
+  end
+
+  # Returns the default shipping address if it exists.   otherwise returns the first shipping address
+  #
+  # @param [none]
+  # @return [ Address ]
+  def shipping_address
+    default_shipping_address ? default_shipping_address : shipping_addresses.first
+  end
 end

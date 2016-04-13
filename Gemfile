@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.3'
 
 gem 'rails', '4.2.5'
 
@@ -19,7 +19,8 @@ gem 'pry'
 gem 'rails_admin'
 gem "paperclip", "~> 4.3"
 gem 'ckeditor'
-
+gem 'config'
+gem 'aasm'
 
 group :development, :test do
   gem 'byebug'

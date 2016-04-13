@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.10.0)
     actionmailer (4.2.5)
       actionpack (= 4.2.5)
       actionview (= 4.2.5)
@@ -58,7 +59,11 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.1)
+    config (1.1.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0.1)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     devise (3.5.6)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -214,9 +219,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   byebug
   ckeditor
   coffee-rails (~> 4.1.0)
+  config
   devise
   font-awesome-rails
   jbuilder (~> 2.0)

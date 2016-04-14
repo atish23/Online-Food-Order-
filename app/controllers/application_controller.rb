@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :cart
   
   def load_cart
-  	@cart = Cart.new(session[:cart])
-    
+  	@cart = Cart.new(session[:cart])   
   end
 
   def cart_items

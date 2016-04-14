@@ -14,6 +14,7 @@
 									<th>Name</th>
 									<th>Quantity</th>
 									<th>Price</th>
+									<th>Total</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -25,6 +26,7 @@
 									<td><a href="#"><%= food.name%></td>
 									<td><%= qty%></td>
 									<td>Rs. <%= food.price%></td>
+									<td>Rs. <%= food.price * qty %></td>
 								</tr>
 								<%end%>
 								<%end%>
@@ -32,8 +34,9 @@
 						</table>
 					</div>
 					<div class="modal-footer">
+						
 						<button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
-						<%= link_to "Checkout",'#',class: 'btn btn-info'%>
+						<%= link_to "Checkout",shopping_orders_path,class: 'btn btn-info'%>
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->

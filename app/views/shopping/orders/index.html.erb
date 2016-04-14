@@ -1,1 +1,10 @@
-hello
+<h1>Order Summary</h1>	
+    <div id='order-items-summary'>
+      <% i = 1 %>
+      <% @order.order_items.each do | items| %>
+        <div id='order-item-<%= i %>' class='panel'>
+          <%= render :partial => 'order_item', :locals => {:items => items } %>
+        </div>
+        <% i += 1 %>
+      <% end %>
+    </div>

@@ -48,7 +48,9 @@
 											<!-- Form inside table wrapper -->
 											<div class="table-responsive">
 												<!-- Ordering form -->
-												<form role="form">
+                   								<%= form_for  @cart_item,
+                                  				:url  => cart_items_path(@cart_item),
+                                  				:html => { :id => 'new_cart_item', :class => 'form' } do |f| %>
 													<!-- Table -->
 													<table class="table table-bordered">
 														<tr>
@@ -70,12 +72,7 @@
 														<tr>
 															<td>Quantity</td>
 															<td><div class="form-group">
-																<select class="form-control input-sm">
-																	<option>1</option>
-																	<option>2</option>
-																	<option>3</option>
-																	<option>4</option>
-																</select>
+																<%= f.select :quantity, [1,2,3,4], {:include_blank => false}, {:class => 'form-control input-sm'} %>
 															</div></td>
 														</tr>
 														<tr>
@@ -91,11 +88,12 @@
 														<tr>
 															<td>&nbsp;</td>
 															<td><div class="form-group">
-																<%= link_to "Payment", checkout_path ,class: "btn btn-danger btn-sm"%>
+																<%#= link_to "Payment", checkout_path ,class: "btn btn-danger btn-sm"%>
+																<%= link_to "Add to cart",cart_items_path(food_id: @food.id),class: "link hidden-xs", :method => :post%>
 															</div></td>
 														</tr>
 													</table>
-												</form><!--/ Table End-->
+												<%end%><!--/ Table End-->
 											</div><!--/ Table responsive class end -->
 										</div>
 									</div><!--/ Inner row end  -->

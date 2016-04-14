@@ -1,4 +1,8 @@
 class CartItemsController < ApplicationController
+	def index
+		
+	end
+
 	def create
 		@cart.increment(params[:food_id])
 		session[:cart] = @cart.cart_data

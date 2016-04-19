@@ -14,15 +14,15 @@ class ApplicationController < ActionController::Base
                 :customer_confirmation_page_view,
                 :sort_direction
 
- # rescue_from CanCan::AccessDenied do |exception|
-  #   flash[:error] = "Access denied."
-  #   flash[:alert] = 'Sorry you are not allowed to do that.'
-  #   if current_user && current_user.admin?
-  #     redirect_to :back
-  #   else
-  #     redirect_to root_url
-  #   end
-  # end
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :firstname, :middlename, :lastname, :nickname) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :firstname, :middlename, :lastname, :nickname) }
+  end
+
 
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
     redirect_to :back, alert: exception.message

@@ -1,0 +1,26 @@
+<tr>
+  <td class="cart_product">
+    <a href=""><%= image_tag item.variant.food.food_image.url(:thumb) %></a>
+  </td>
+  <td class="cart_description">
+    <h4><%= link_to item.variant.name, food_path(item.variant.food) %></h4>
+    <p> </p>
+  </td>
+  <td class="cart_price">
+    <p>$59</p>
+  </td>
+  <td class="cart_quantity">
+    <div class="cart_quantity_button">
+      <a class="cart_quantity_up" href=""> + </a>
+      <!-- <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2"> -->
+      <%= cart_items_form.text_field :quantity, :size=>"2",:class => 'cart_quantity' %>
+      <a class="cart_quantity_down" href=""> - </a>
+    </div>
+  </td>
+  <td class="cart_total">
+    <p class="cart_total_price"><%= number_to_currency item.price %></p>
+  </td>
+  <td class="cart_delete">
+    <%= link_to '<i class="fa fa-times"></i>'.html_safe, shopping_cart_item_path(item, :variant_id => item.variant_id), :method => :delete %>
+  </td>
+</tr>

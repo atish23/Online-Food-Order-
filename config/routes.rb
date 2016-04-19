@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  resources :carts
-  resources :cart_items
+  # resources :carts
+  # resources :cart_items
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 

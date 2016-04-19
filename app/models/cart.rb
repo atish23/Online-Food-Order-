@@ -50,18 +50,20 @@ class Cart < ActiveRecord::Base
   def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
     items = shopping_cart_items.where(variant_id: variant_id).to_a
     variant = Variant.where(id: variant_id).first
-    quantity_to_purchase = variant.quantity_purchaseable_if_user_wants(qty.to_i, admin_purchase)
-    if admin_purchase && (quantity_to_purchase > 0)
-      cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
-    elsif variant.sold_out?
-      cart_item = saved_cart_items.create(variant_id:   variant_id,
-                                          user:         customer,
-                                          item_type_id: ItemType::SAVE_FOR_LATER_ID,
-                                          quantity:     qty
-                                    ) if items.size < 1
-    else
-      cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
-    end
+    #quantity_to_purchase = variant.quantity_purchaseable_if_user_wants(qty.to_i, admin_purchase)
+    # if admin_purchase && (quantity_to_purchase > 0)
+    #   cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+    # elsif variant.sold_out?
+      # cart_item = saved_cart_items.create(variant_id:   variant_id,
+      #                                     user:         customer,
+      #                                     item_type_id: ItemType::SAVE_FOR_LATER_ID,
+      #                                     quantity:     qty
+      #                               ) if items.size < 1
+    # else
+          cart_item = add_cart_items(items,qty, customer, cart_item_type_id, variant_id)
+
+      #cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+    # end
     cart_item
   end
 

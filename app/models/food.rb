@@ -10,4 +10,28 @@ class Food < ActiveRecord::Base
 
 	has_attached_file :food_image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => ""
   	validates_attachment_content_type :food_image, :content_type => /\Aimage\/.*\Z/
+
+
+  def self.active
+    where("foods.deleted_at IS NULL OR foods.deleted_at > ?", Time.zone.now)
+    #  Add this line if you want the available_at to function
+    #where("products.available_at IS NULL OR products.available_at >= ?", Time.zone.now)
+  end
+
+  def active(at = Time.zone.now)
+    deleted_at.nil? || deleted_at > (at + 1.second)
+  end
+
+  def active?(at = Time.zone.now)
+    active(at)
+  end
+
+  def activate!
+    self.deleted_at = nil
+    save
+  end
+ private
+     def has_active_variants?
+      active_variants.any?{|v| v.is_available? }
+    end
 end

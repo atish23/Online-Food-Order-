@@ -7,19 +7,19 @@ private
 		next_form(order) || shopping_orders_url
 	end
 
-	def next_form(order)
-		#raise cart_items.inspect
-		# if !cart_items
-		# #if session_cart.shopping_cart_items.empty?
-		# 	flash[:notice] = "Yo do not have anything in cart"
-		# 	return foods_url
-		# elsif not_secure?
-		# 	session[:return_to] = shopping_orders_url
-		# 	return login_url()
-		# elsif session_order.ship_address_id.nil?
-		# 	return shopping_address_url()
-		# end	
-	end
+  def next_form(order)
+    # if cart is empty
+    if session_cart.shopping_cart_items.empty?
+      flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
+      return products_url
+    ## If we are insecure
+    elsif not_secure?
+      session[:return_to] = shopping_orders_url
+      return new_user_session_path()
+    elsif session_order.ship_address_id.nil?
+      return shopping_addresses_url()
+    end
+  end
 
 	def session_order
 		find_or_create_order

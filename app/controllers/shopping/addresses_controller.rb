@@ -60,7 +60,7 @@ class Shopping::AddressesController < Shopping::BaseController
   def select_address
     address = current_user.addresses.find(params[:id])
     update_order_address_id(address.id)
-    redirect_to shopping_shipping_methods_url
+    redirect_to shopping_orders_url
   end
 
   def destroy

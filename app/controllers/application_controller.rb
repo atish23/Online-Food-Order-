@@ -106,7 +106,7 @@ class ApplicationController < ActionController::Base
   #   Change this method for showing products that the end user will more than likely like.
   #
   def most_likely_user
-    current_user ? current_user : random_user
+    current_user ? current_user : current_user
   end
 
   ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
@@ -136,7 +136,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back_or_default(default)
-    default = root_url if current_user && (default == login_url)
+    default = root_url if current_user && (default == new_user_session_path)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end

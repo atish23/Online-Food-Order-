@@ -1,5 +1,5 @@
 class Shopping::OrdersController < Shopping::BaseController
-  before_filter :require_login
+  before_filter :authenticate_user!
   # GET /shopping/orders
   ### The intent of this action is two fold
   #
@@ -32,7 +32,7 @@ class Shopping::OrdersController < Shopping::BaseController
     @order = find_or_create_order
     @order.ip_address = request.remote_ip
 
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
+    #@credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
 
     address = @order.bill_address.cc_params
 
@@ -93,11 +93,11 @@ class Shopping::OrdersController < Shopping::BaseController
    # @order.credited_total
   end
 
-  def require_login
-    if !current_user
-      session[:return_to] = shopping_orders_url
-      redirect_to( login_url() ) and return
-    end
-  end
+  # def require_login
+  #   if !current_user
+  #     session[:return_to] = shopping_orders_url
+  #     redirect_to( new_user_session_url() ) and return
+  #   end
+  # end
 
 end

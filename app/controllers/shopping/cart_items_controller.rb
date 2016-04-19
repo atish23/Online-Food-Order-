@@ -3,7 +3,7 @@ class Shopping::CartItemsController < Shopping::BaseController
   # GET /shopping/cart_items
   def index
     @cart_items       = session_cart.shopping_cart_items
-    #@saved_cart_items = session_cart.saved_cart_items
+    @saved_cart_items = session_cart.saved_cart_items
   end
 
   # POST /shopping/cart_items
@@ -15,7 +15,7 @@ class Shopping::CartItemsController < Shopping::BaseController
       session_cart.save_user(most_likely_user)
       redirect_to(shopping_cart_items_url)
     else
-      variant = Variant.includes(:product).find_by_id(params[:cart_item][:variant_id])
+      variant = Variant.includes(:food).find_by_id(params[:cart_item][:variant_id])
       if variant
         redirect_to(product_url(variant.product))
       else

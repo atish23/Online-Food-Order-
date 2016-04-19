@@ -93,8 +93,7 @@ class Order < ActiveRecord::Base
       oi =  OrderItem.create(
           :order        => self,
           :variant_id   => item.variant.id,
-          :price        => item.variant.price,
-          :tax_rate_id  => tax_rate_id)
+          :price        => item.variant.price)
       self.order_items.push(oi)
     end
   end
@@ -287,17 +286,17 @@ private
   # @param none
   # @return [none]
   def update_tax_rates
-    if ship_address_id_changed?
-      # set_beginning_values
-      tax_time = completed_at? ? completed_at : Time.zone.now
-      order_items.each do |item|
-        rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
-        if rate && item.tax_rate_id != rate.id
-          item.tax_rate = rate
-          item.save
-        end
-      end
-    end
+    # if ship_address_id_changed?
+    #   # set_beginning_values
+    #   tax_time = completed_at? ? completed_at : Time.zone.now
+    #   order_items.each do |item|
+    #     rate = item.variant.product.tax_rate(self.ship_address.state_id, tax_time)
+    #     if rate && item.tax_rate_id != rate.id
+    #       item.tax_rate = rate
+    #       item.save
+    #     end
+    #   end
+    # end
   end
 
   def create_invoice_transaction(credit_card, charge_amount, args, credited_amount = 0.0)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416141126) do
+ActiveRecord::Schema.define(version: 20160419133249) do
 
   create_table "address_types", force: :cascade do |t|
     t.string "name",        limit: 64, null: false
@@ -128,6 +128,12 @@ ActiveRecord::Schema.define(version: 20160416141126) do
     t.string   "short_description"
     t.float    "sale_price"
     t.boolean  "active"
+    t.text     "product_keywords"
+    t.datetime "available_at"
+    t.string   "deleted_at"
+    t.string   "meta_keywords"
+    t.string   "meta_description"
+    t.boolean  "featured"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -159,9 +165,11 @@ ActiveRecord::Schema.define(version: 20160416141126) do
     t.decimal  "total"
     t.string   "state"
     t.integer  "shipment_id"
+    t.integer  "variant_id"
   end
 
   add_index "order_items", ["shipment_id"], name: "index_order_items_on_shipment_id"
+  add_index "order_items", ["variant_id"], name: "index_order_items_on_variant_id"
 
   create_table "orders", force: :cascade do |t|
     t.string   "status",          default: "Pending"

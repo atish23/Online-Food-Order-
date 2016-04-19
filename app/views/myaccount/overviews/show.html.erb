@@ -1,28 +1,52 @@
-<div class='five large-5 column'>
-  <h4> <%= current_user.firstname %> Profile </h4>
 
-  <ul id='profile_details' >
-    <li>
-      <label>Email:</label>
-      <%= current_user.email %>
-    </li>
+      
+      
+      
+      <!-- Inner Content -->
+      <div class="inner-page padd">
+      
+        <!-- Contact Us Start -->
+        
+        <div class="contactus">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <!-- Contact Us content -->
+                <div class="row">
+                  <div class="col-md-6 col-sm-6">
+                    <!-- Contact content details -->
+                    <div class="contact-details">
+                      <!-- Heading -->
+                      <h4>First Name:</h4><!-- Address / Icon -->
+                      <i class="fa fa-info br-red"></i> <span><%= @user.firstname%></span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
 
-    <li>
-      <%= link_to "Edit", edit_myaccount_overview_path() %>
-    </li>
-  </ul>
-</div>
+                  <div class="col-md-6 col-sm-6">
+                    <!-- Contact content details -->
+                    <div class="contact-details">
+                      <!-- Heading -->
+                      <h4>Last Name:</h4><!-- Address / Icon -->
+                      <i class="fa fa-info br-red"></i> <span><%= @user.lastname%></span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6">
+                    <!-- Contact content details -->
+                    <div class="contact-details">
+                      <!-- Heading -->
+                      <h4>Email:</h4><!-- Address / Icon -->
+                      <i class="fa fa-envelope-o br-red"></i> <span><%= @user.email %></span>
+                      <div class="clearfix"></div>
+                    </div>
+                  </div>                
+                </div><!--/ Inner row end -->
+              <%=  link_to "Edit", edit_user_registration_path(@user),class: "btn btn-primary" %> |
+              <%=  link_to "Back", root_path,class: "btn btn-primary" %>  
 
-<div class='four large-4 column'>
-  <div>
-    <h4> Address </h4>
-    <% if current_user.shipping_address %>
-      <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => current_user.shipping_address } %>
-      <%= link_to "Edit", edit_myaccount_address_path(current_user.shipping_address) %>
-    <% else %>
-      No Address Saved.<br/>
-      <%= link_to "New", new_myaccount_address_path() %>
-    <% end %>
-  </div>
-  <div>
+              </div>
+            </div>
+          </div>
+        </div>
 </div>

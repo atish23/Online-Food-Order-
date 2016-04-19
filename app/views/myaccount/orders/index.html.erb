@@ -1,8 +1,8 @@
-<div class='nine large-9 columns'>
+ <div class="container">
   <h3>Orders</h3>
 
   <% unless @orders.length > 0 %>
-    You currently do not have any orders.
+    <p>You currently do not have any orders.</p>
   <% end %>
 
   <% @orders.each do |order| %>

@@ -10,6 +10,13 @@
 
 	<div class="wrapper">
 		<%= render 'shared/header'%>
+      <%  if myaccount_tab %>
+        <h1 style='text-align:center;'><%#= site_name %></h1>
+        <hr class="first_double_hr">
+        <hr class="second_double_hr">
+        <%= render :partial => '/shared/myaccount_subheader' %>
+      <% end %>
+    <div id='prefooter_wrapper'>&nbsp;</div>
 		<%= yield %>
 		<%= render 'shared/footer'%>
 	</div>

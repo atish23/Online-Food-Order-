@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414114428) do
+ActiveRecord::Schema.define(version: 20160416141126) do
 
   create_table "address_types", force: :cascade do |t|
     t.string "name",        limit: 64, null: false
@@ -55,11 +55,23 @@ ActiveRecord::Schema.define(version: 20160414114428) do
     t.integer  "item_type_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "variant_id"
   end
 
   add_index "cart_items", ["cart_id"], name: "index_cart_items_on_cart_id"
   add_index "cart_items", ["item_type_id"], name: "index_cart_items_on_item_type_id"
   add_index "cart_items", ["user_id"], name: "index_cart_items_on_user_id"
+  add_index "cart_items", ["variant_id"], name: "index_cart_items_on_variant_id"
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "carts", ["customer_id"], name: "index_carts_on_customer_id"
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -88,6 +100,17 @@ ActiveRecord::Schema.define(version: 20160414114428) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
+  create_table "countries", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.integer  "shipping_zone_id"
+    t.boolean  "active"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "countries", ["shipping_zone_id"], name: "index_countries_on_shipping_zone_id"
+
   create_table "foods", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
@@ -105,6 +128,25 @@ ActiveRecord::Schema.define(version: 20160414114428) do
     t.string   "short_description"
     t.float    "sale_price"
     t.boolean  "active"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.integer  "order_id"
+    t.decimal  "amount"
+    t.string   "invoice_type"
+    t.string   "state"
+    t.boolean  "active"
+    t.decimal  "credited_amount"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "invoices", ["order_id"], name: "index_invoices_on_order_id"
+
+  create_table "item_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -157,6 +199,57 @@ ActiveRecord::Schema.define(version: 20160414114428) do
 
   add_index "roles", ["name"], name: "index_roles_on_name"
 
+  create_table "shipments", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "shipping_method_id"
+    t.integer  "address_id"
+    t.string   "tracking"
+    t.string   "number"
+    t.string   "state"
+    t.string   "shipped_at"
+    t.boolean  "active"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "shipments", ["address_id"], name: "index_shipments_on_address_id"
+  add_index "shipments", ["order_id"], name: "index_shipments_on_order_id"
+  add_index "shipments", ["shipping_method_id"], name: "index_shipments_on_shipping_method_id"
+
+  create_table "shipping_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shipping_methods", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "shipping_zone_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "shipping_methods", ["shipping_zone_id"], name: "index_shipping_methods_on_shipping_zone_id"
+
+  create_table "shipping_zones", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.string   "described_as"
+    t.integer  "country_id"
+    t.integer  "shipping_zone_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "states", ["country_id"], name: "index_states_on_country_id"
+  add_index "states", ["shipping_zone_id"], name: "index_states_on_shipping_zone_id"
+
   create_table "user_roles", force: :cascade do |t|
     t.integer  "role_id"
     t.integer  "user_id"
@@ -186,5 +279,21 @@ ActiveRecord::Schema.define(version: 20160414114428) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "variants", force: :cascade do |t|
+    t.integer  "food_id"
+    t.string   "sku"
+    t.string   "name"
+    t.decimal  "price"
+    t.decimal  "cost"
+    t.datetime "deleted_at"
+    t.boolean  "master"
+    t.integer  "inventory_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "variants", ["food_id"], name: "index_variants_on_food_id"
+  add_index "variants", ["inventory_id"], name: "index_variants_on_inventory_id"
 
 end

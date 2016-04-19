@@ -183,7 +183,7 @@
 												</ul>
 											</li>
 											<li>
-												<%= link_to (image_tag 'nav-menu/nav3.jpg' , :class => "img-responsive")+"My Profile" ,  users_show_path(current_user.id) if current_user.present? %>
+												<%= link_to (image_tag 'nav-menu/nav3.jpg' , :class => "img-responsive")+"My Profile" ,  myaccount_overview_path if current_user.present? %>
 											</li>
 											<!-- <a href="gallery.html">
 											<%#= image_tag 'nav-menu/nav3.jpg', :class => "img-responsive",:alt => ""%> Gallery</a></li> -->

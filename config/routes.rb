@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   namespace :myaccount do
     resources :orders,        only: [:index, :show]
     resources :addresses
+    resource  :overview,      only: [:show, :edit, :update]
   end
 
   namespace :shopping do
@@ -29,6 +30,16 @@ Rails.application.routes.draw do
       member do
         get :checkout
         get :confirmation
+      end
+    end
+    resources  :billing_addresses do
+      member do
+        put :select_address
+      end
+    end
+     resources  :cart_items do
+      member do
+        put :move_to
       end
     end
   end

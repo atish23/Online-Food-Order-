@@ -1,4 +1,4 @@
-class Myaccount::OrdersController < ApplicationController
+class Myaccount::OrdersController < Myaccount::BaseController
   # GET /myaccount/orders
   # GET /myaccount/orders.xml
   def index
@@ -9,6 +9,10 @@ class Myaccount::OrdersController < ApplicationController
   # GET /myaccount/orders/1.xml
   def show
     @order = current_user.finished_orders.includes([:invoices]).find_by_number(params[:id])
-  	#raise @order.inspect
+  end
+  private
+
+  def selected_myaccount_tab(tab)
+    tab == 'orders'
   end
 end

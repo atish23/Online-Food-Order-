@@ -1,8 +1,7 @@
+
 <!-- Banner Start -->
 <div class="banner padd">
-  <div class="container">
     <!-- Image -->
-  
     <%= image_tag "crown-white.png",class: 'img-responsive'%>
     <!-- Heading -->
     <h2 class="white">Cart</h2>
@@ -16,26 +15,25 @@
 <!-- Banner End -->
        
 <div class="inner-page padd">
-  <% if  @cart_items.blank? && @saved_cart_items.empty? %>
-    <h2 > Nothing in cart</h2>
-  <% elsif  @cart_items.blank? %>
-    <h2>Kuch nhi bhau isme ...pura khali hai .. </h2>
-    <div> <h3>Hello add items saved for later</h3> </div>
-  <% end %>
-
+  <section id="cart_items">
+    <div class="container">
+      <% if  @cart_items.blank? && @saved_cart_items.empty? %>
+        <h2 > Nothing in cart</h2>
+      <% elsif  @cart_items.blank? %>
+        <h2>Kuch nhi bhau isme ...pura khali hai .. </h2>
+        <div> <h3>Hello add items saved for later</h3> </div>
+      <% end %>
   <% unless @cart_items.blank? %>
     <%= form_for session_cart, url: shopping_cart_item_path(session_cart), html: {class: 'form-group'}, :as => :cart do |cart_form| %>
-      <section id="cart_items">
-        <div class="container">
-          <div class="table-responsive cart_info">
+          <div class="table cart_info">
             <table class="table table-condensed">
               <thead>
-                <tr>
-                  <td>Item</td>
-                  <td >Description</td>
-                  <td>Price</td>
-                  <td>Quantity</td>
-                  <td>Total</td>
+                <tr class="cart_menu">
+                  <td class="image">Item</td>
+                  <!-- <td class="description"></td> -->
+                  <td class="price">Price</td>
+                  <td class="quantity">Quantity</td>
+                  <td class="total">Total</td>
                   <td></td>
                 </tr>
               </thead>
@@ -53,8 +51,8 @@
               <%= cart_form.submit 'checkout', {:checkout => 1, :class => 'btn btn-primary'} %>
               <div class="clear"></div>
             <% end %>
-        </div>
-      </section> <!--/#cart_items-->
     <% end %>
   <%end%>
+        </div>
+      </section> <!--/#cart_items-->
 </div>

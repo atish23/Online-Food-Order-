@@ -98,27 +98,27 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def capture_invoice(invoice)
-    payment = invoice.capture_payment({})
-    self.pay! if payment.success
-    payment
-  end
+  # def capture_invoice(invoice)
+  #   payment = invoice.capture_payment({})
+  #   self.pay! if payment.success
+  #   payment
+  # end
 
-  def create_invoice(credit_card, charge_amount, args, credited_amount = 0.0)
-    transaction do
-      new_invoice = create_invoice_transaction(credit_card, charge_amount, args, credited_amount)
-      if new_invoice.succeeded?
-        remove_user_store_credits
+  # def create_invoice(credit_card, charge_amount, args, credited_amount = 0.0)
+  #   transaction do
+  #     new_invoice = create_invoice_transaction(credit_card, charge_amount, args, credited_amount)
+  #     if new_invoice.succeeded?
+  #       remove_user_store_credits
 
-        if Settings.uses_resque_for_background_emails
-          Resque.enqueue(Jobs::SendOrderConfirmation, self.id, new_invoice.id)
-        else
-          Notifier.order_confirmation(self.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an order conf email')
-        end
-      end
-      new_invoice
-    end
-  end
+  #       if Settings.uses_resque_for_background_emails
+  #         Resque.enqueue(Jobs::SendOrderConfirmation, self.id, new_invoice.id)
+  #       else
+  #         Notifier.order_confirmation(self.id, new_invoice.id).deliver rescue puts( 'do nothing...  dont blow up over an order conf email')
+  #       end
+  #     end
+  #     new_invoice
+  #   end
+  # end
 
   def order_complete!
     self.state = 'complete'

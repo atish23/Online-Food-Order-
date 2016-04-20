@@ -49,8 +49,6 @@ class Address < ActiveRecord::Base
       :address1 => address1,
       :address2 => address2,
       :city     => city,
-      :state    => state.abbreviation,
-      :country  => state.country_id == Country::USA_ID ? 'US' : 'CAN',
       :zip      => zip_code#,
       #:phone    => phone
     }

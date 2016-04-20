@@ -10,6 +10,7 @@ class Shopping::OrdersController < Shopping::BaseController
   ##### THIS METHOD IS BASICALLY A CHECKOUT ENGINE
   def index
     @order = find_or_create_order
+    #raise "hello"
     if f = next_form(@order)
       redirect_to f
     else
@@ -41,28 +42,12 @@ class Shopping::OrdersController < Shopping::BaseController
       session[:order_id] = nil
       flash[:error] = I18n.t('the_order_purchased')
       redirect_to myaccount_order_url(@order)
-    elsif @credit_card.valid?
-      if response = @order.create_invoice(@credit_card,
-                                          @order.credited_total,
-                                          { email: @order.email, billing_address: address, ip: @order.ip_address },
-                                          @order.amount_to_credit)
-        if response.succeeded?
-          expire_all_browser_cache
-          ##  MARK items as purchased
-          session_cart.mark_items_purchased(@order)
-          session[:last_order] = @order.number
-          redirect_to( confirmation_shopping_order_url(@order) ) and return
-        else
-          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-        end
-      else
-        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
-      end
-      form_info
-      render :action => 'index'
     else
-      form_info
-      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+      #raise "hi"
+       expire_all_browser_cache
+       session_cart.mark_items_purchased(@order)
+       session[:last_order] = @order.number
+       redirect_to( confirmation_shopping_order_url(@order) ) and return
       render :action => 'index'
     end
   end

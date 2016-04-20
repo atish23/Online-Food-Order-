@@ -1,6 +1,7 @@
 class FoodsController < ApplicationController
 	def index
 		@foods = Food.active.includes(:variants)
+		form_info
 	end
 
 	def show

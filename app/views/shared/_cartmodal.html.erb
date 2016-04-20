@@ -18,7 +18,7 @@
 								</tr>
 							</thead>
 							<tbody>
-							<% if @cart_items && cart_properties['items_count'] > 0 %>
+							<% if @cart_items %>
 								<% @cart_items.each do |food_id,qty|%>
 								<% food = Food.find(food_id)%>
 								<tr>

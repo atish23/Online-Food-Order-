@@ -9,8 +9,15 @@ class Shopping::CartItemsController < Shopping::BaseController
   # POST /shopping/cart_items
   def create
     session_cart.save if session_cart.new_record?
-    qty = params[:cart_item][:quantity].to_i
-    if cart_item = session_cart.add_variant(params[:cart_item][:variant_id], most_likely_user, qty)
+    if params[:cart_item]
+      qty = params[:cart_item][:quantity].to_i
+      vari = params[:cart_item][:variant_id]
+    else
+      qty = params[:quantity].to_i
+      vari = params[:variant_id]
+    end
+    
+    if cart_item = session_cart.add_variant(vari, most_likely_user, qty)
       flash[:notice] = [I18n.t('out_of_stock_notice'), I18n.t('item_saved_for_later')].compact.join(' ') unless cart_item.shopping_cart_item?
       session_cart.save_user(most_likely_user)
       redirect_to(shopping_cart_items_url)

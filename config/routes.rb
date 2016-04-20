@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'static_pages/about_us', as: :about_us
   resources :foods
   get 'users/:id' => 'users#show' , as: "users_show"
-  delete "carts/:item_id/", to: "carts#destroy", as: :cart_item_delete
+  #delete "carts/:item_id/", to: "carts#destroy", as: :cart_item_delete
 
 
   namespace :myaccount do

@@ -78,11 +78,11 @@ class Shopping::OrdersController < Shopping::BaseController
    # @order.credited_total
   end
 
-  # def require_login
-  #   if !current_user
-  #     session[:return_to] = shopping_orders_url
-  #     redirect_to( new_user_session_url() ) and return
-  #   end
-  # end
+  def require_login
+    if !current_user
+      session[:return_to] = shopping_orders_url
+      redirect_to( new_user_session_url() ) and return
+    end
+  end
 
 end

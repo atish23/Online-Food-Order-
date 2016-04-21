@@ -1,10 +1,7 @@
+<% if  @shopping_addresses.empty? %>
 <%= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'form-horizontal'} do |address_form| %>
   <%= render :partial =>  'form', :locals => {:f => address_form}  %>
 <% end %>
-<% if  @shopping_addresses.empty? %>
-  <h2>N<%= form_for @shopping_address, url: shopping_addresses_path, html: {class: 'form-horizontal'} do |address_form| %>
-  <%= render :partial =>  'form', :locals => {:f => address_form}  %>
-<% end %>ew Address</h2>
 <% else %>
   <h3>Pick a Shipping Address</h3>
 <% end %>

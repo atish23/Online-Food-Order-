@@ -15,10 +15,12 @@
 											<!-- Image -->
 											<%= image_tag food.food_image.url ,class: "img-responsive"%>
 											<!-- Shopping item name / Heading -->
-											<h4 class="pull-left"><%= link_to food.name,food_path(food)%></h4>
-											<span class="item-price pull-right">$<%= food.price%>
+											<h4 class="pull-left"><%= link_to food.name.truncate(20),food_path(food)%></h4>
+											<span class="item-price pull-right"><i class="fa fa-inr" aria-hidden="true"></i>
+<%= food.price%></span>
+											<div class="clearfix"></div>
 											<!-- Paragraph -->
-											<p><%= food.short_description%></p>
+											<p><%= raw food.short_description.truncate(180)%></p>
 											<!-- Buy now button -->
 											<div class="visible-xs">
 												<a class="btn btn-danger btn-sm" href="#">Buy Now</a>

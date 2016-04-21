@@ -1,8 +1,8 @@
 class Order < ActiveRecord::Base
-	include AASM
+  include AASM
 
   has_many :order_items, :dependent => :destroy
-	#has_many :foods,through: :order_items
+  #has_many :foods,through: :order_items
   has_many   :shipments
   has_many   :invoices
   has_many   :completed_invoices,   -> { where(state: ['authorized', 'paid']) },  class_name: 'Invoice'
@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   has_many   :paid_invoices      ,  -> { where(state: 'paid') },            class_name: 'Invoice'
   has_many   :canceled_invoices   , ->  { where(state: 'canceled') }  ,     class_name: 'Invoice'
  
-	
+  
   belongs_to :user
   belongs_to   :ship_address, class_name: 'Address'
   belongs_to   :bill_address, class_name: 'Address'
@@ -167,9 +167,9 @@ class Order < ActiveRecord::Base
 
   def add_items(variant, quantity, state_id = nil)
     self.save! if self.new_record?
-    tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil
+    #tax_rate_id = state_id ? variant.product.tax_rate(state_id) : nil
     quantity.times do
-      self.order_items.push(OrderItem.create(:order => self,:variant_id => variant.id, :price => variant.price, :tax_rate_id => tax_rate_id))
+      self.order_items.push(OrderItem.create(:order => self,:variant_id => variant.id, :price => variant.price))
     end
   end
 
@@ -233,10 +233,7 @@ class Order < ActiveRecord::Base
 
   def self.include_checkout_objects
     includes([{ship_address: :state},
-              {bill_address: :state},
-              {order_items:
-                {variant:
-                  { product: :images }}}])
+              {bill_address: :state}])
   end
 private
   def item_prices

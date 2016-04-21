@@ -2,18 +2,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   layout 'application'
 
-  helper_method :current_user,
-                :current_user_id,
-                :most_likely_user,
+  helper_method :most_likely_user,
                 :random_user,
                 :session_cart,
-                :is_production_simulation,
-                :search_product,
                 :myaccount_tab,
                 :select_countries,
                 :customer_confirmation_page_view,
                 :sort_direction
-
+                #:is_production_simulation,
+                #:search_product,
+                #:product_types,
+                #:current_user,
+                #:current_user_id,
+                
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 protected
@@ -23,6 +24,15 @@ protected
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :firstname, :middlename, :lastname, :nickname) }
   end
 
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   flash[:error] = "Access denied."
+  #   flash[:alert] = 'Sorry you are not allowed to do that.'
+  #   if current_user && current_user.admin?
+  #     redirect_to :back
+  #   else
+  #     redirect_to root_url
+  #   end
+  # end
 
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
     redirect_to :back, alert: exception.message
@@ -38,19 +48,6 @@ protected
 
   private
 
-  def customer_confirmation_page_view
-    false
-  end
-
-  def pagination_page
-    params[:page] ||= 1
-    params[:page].to_i
-  end
-
-  def pagination_rows
-    params[:rows] ||= 25
-    params[:rows].to_i
-  end
 
   def myaccount_tab
     false
@@ -62,7 +59,7 @@ protected
 
   def store_return_location
     # disallow return to login, logout, signup pages
-    disallowed_urls = [ new_user_session_path, destroy_user_session_path ]
+    disallowed_urls = [ new_user_session_path, destroy_user_session_path() ]
     disallowed_urls.map!{|url| url[/\/\w+$/]}
     unless disallowed_urls.include?(request.url)
       session[:return_to] = request.url
@@ -73,13 +70,7 @@ protected
     !current_user
   end
 
-  def search_product
-    @search_product || Food.new
-  end
 
-  def is_production_simulation
-    false
-  end
 
   def session_cart
     return @session_cart if defined?(@session_cart)
@@ -90,7 +81,7 @@ protected
     if cookies[:cart_id]
       @session_cart = Cart.includes(:shopping_cart_items).find_by_id(cookies[:cart_id])
       unless @session_cart
-        @session_cart = Cart.create(:user_id => current_user_id)
+        @session_cart = Cart.create(:user_id => current_user.id)
         cookies[:cart_id] = @session_cart.id
       end
     elsif current_user && current_user.current_cart
@@ -110,10 +101,10 @@ protected
   end
 
   ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
-  def random_user
-    return @random_user if defined?(@random_user)
-    @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
-  end
+  # def random_user
+  #   return @random_user if defined?(@random_user)
+  #   @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
+  # end
 
   def merge_carts
     if !!current_user
@@ -130,10 +121,7 @@ protected
     end
   end
 
-  def current_user_id
-    return @current_user_id if defined?(@current_user_id)
-    @current_user_id = current_user.id
-  end
+
 
   def redirect_back_or_default(default)
     default = root_url if current_user && (default == new_user_session_path)
@@ -166,4 +154,43 @@ protected
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
+
+  # def customer_confirmation_page_view
+  #   false
+  # end
+
+  # def pagination_page
+  #   params[:page] ||= 1
+  #   params[:page].to_i
+  # end
+
+  # def pagination_rows
+  #   params[:rows] ||= 25
+  #   params[:rows].to_i
+  # end
+
+  ###  Authlogic helper methods
+  # def current_user_session
+  #   return @current_user_session if defined?(@current_user_session)
+  #   @current_user_session = UserSession.find
+  # end
+
+  # def current_user
+  #   return @current_user if defined?(@current_user)
+  #   @current_user = current_user_session && current_user_session.record
+  # end
+
+  # def current_user_id
+  #   return @current_user_id if defined?(@current_user_id)
+  #   @current_user_id = current_user_session && current_user_session.record && current_user_session.record.id
+  # end
+
+  # def search_product
+  #   @search_product || Product.new
+  # end
+
+  # def is_production_simulation
+  #   false
+  # end
+
 end

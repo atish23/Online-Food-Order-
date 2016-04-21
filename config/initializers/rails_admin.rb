@@ -75,6 +75,12 @@ RailsAdmin.config do |config|
   
 
 
-  
+    # To Hide Unwanted Tables from admin dashboard
+  hidden_model = ['AddressType','Cart','CartItem','Invoice','ItemType','Shipment','ShippingCategory','ShippingMethod','ShippingZone']
+    hidden_model.each do |hidden|
+      config.model hidden do
+       visible false
+      end
+    end
 
 end

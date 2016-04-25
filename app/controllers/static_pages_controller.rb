@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 		@categories = Category.all
 	end
 
-	
+
 	def about_us
 
 	end

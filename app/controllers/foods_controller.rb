@@ -9,7 +9,7 @@ class FoodsController < ApplicationController
 		form_info
 		@cart_item.variant_id = @food.active_variants.first.try(:id)
 	end
-private 
+private
   def form_info
     @cart_item = CartItem.new
   end

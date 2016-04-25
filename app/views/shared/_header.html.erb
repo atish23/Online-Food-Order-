@@ -1,6 +1,5 @@
 <%#= render 'shared/cartmodal'%>
 <!-- Header Start -->
-			
 			<div class="header">
 				<div class="container">
 					<!-- Header top area content -->
@@ -49,7 +48,7 @@
 										<h4>Shopping Cart</h4>
 										<span class="cart-count"><%= session_cart.shopping_cart_items.length%> Items</span>
 										<div class="clearfix"></div>
-									<%end%>								
+									<%end%>
 									<div class="clearfix"></div>
 								</div>
 								<div class="clearfix"></div>
@@ -92,7 +91,7 @@
 											<li>
 											<%= link_to (image_tag 'nav-menu/nav1.jpg', :class => "img-responsive img-rounded",:alt => "")+"Home",root_path%>
 											</li>
-											
+
 											<li class="dropdown hidden-xs">
 												<a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag 'nav-menu/nav2.jpg', :class => "img-responsive img-rounded",:alt => ""%> Menu <b class="caret"></b></a>
 
@@ -166,5 +165,5 @@
 					</div>
 				</div> <!-- / .container -->
 			</div>
-			
+
 			<!-- Header End -->

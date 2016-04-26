@@ -7,19 +7,6 @@
 						<div class="row">
 							<div class="col-md-4 col-sm-4">
 								<!-- Header top left content contact -->
-								<div>
-									<% if current_user%>
-									<span><%= current_user.email%>   <%= link_to "SignOut", destroy_user_session_path,method: :delete%></span>
-									<%else%>
-									<span><%= link_to "SignIn",new_user_session_path%></span>
-									<%end%>
-								</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-4 col-sm-4">
-								<!-- Header top left content contact -->
 								<div class="header-contact">
 									<!-- Contact number -->
 									<span><i class="fa fa-phone red"></i> 879-938-57791</span>
@@ -62,11 +49,11 @@
 							<%= link_to root_path do %>
 								<!-- Logo area -->
 								<div class="logo">
-									<%= image_tag 'logo.png', :class => "img-responsive",:alt => ""%>
+									<%= image_tag 'logo1.jpg', :class => "img-responsive",:alt => ""%>
 									<!-- Heading -->
-									<h1>CakeFactory</h1>
+									<h1>TeekhaRassa</h1>
 									<!-- Paragraph -->
-									<p>Facility ester expedite instinct.</p>
+									<p>Ithe Sagal Bhetel na Bhau!</p>
 								</div>
 							<% end  %>
 							</a>
@@ -126,14 +113,23 @@
 													<li><a href="menu.html">Special Menu</a></li>
 												</ul>
 											</li>
-											<li>
-												<%= link_to (image_tag 'nav-menu/nav3.jpg' , :class => "img-responsive")+"My Profile" ,  myaccount_overview_path if current_user.present? %>
-											</li>
+<!-- 																				<%# if current_user%>
+									<span><%#= current_user.email%>   <%#= link_to "SignOut", destroy_user_session_path,method: :delete%></span>
+									<%#else%>
+									<span><%#= link_to "SignIn",new_user_session_path%></span>
+									<%#end%> -->
+
+												<%if current_user%>
+													<li><%= link_to (image_tag 'nav-menu/signed_user.png' , :class => "img-responsive")+"My Profile" ,  myaccount_overview_path if current_user.present? %></li>
+													<li><%= link_to (image_tag 'nav-menu/Logout.png' , :class => "img-responsive")+"SignOut" ,  destroy_user_session_path,method: :delete if current_user.present? %></li>
+												<%else%>
+													<li><%= link_to (image_tag 'nav-menu/nav3.jpg' , :class => "img-responsive")+"SignIn" ,  new_user_session_path%></li>
+												<%end%>
 											<!-- <a href="gallery.html">
 											<%#= image_tag 'nav-menu/nav3.jpg', :class => "img-responsive",:alt => ""%> Gallery</a></li> -->
-											<li>
-											<%= link_to (image_tag 'nav-menu/nav6.jpg' , :class => "img-responsive")+"About" ,  about_us_path %>
-											 </li>
+<!-- 											<li>
+											<%#= link_to (image_tag 'nav-menu/nav6.jpg' , :class => "img-responsive")+"About" ,  about_us_path %>
+											 </li> -->
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div><!-- /.container-fluid -->

@@ -20,7 +20,7 @@ class CartItem < ActiveRecord::Base
   end
 
   def name
-    variant.product_name
+    variant.name
   end
 
   # Call this method if you need the price of an item before taxes

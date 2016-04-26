@@ -1,9 +1,15 @@
 class FoodsController < ApplicationController
-	def index
-		@foods = Food.active.includes(:variants)
+	# def index
+	# 	#@category = Category.find(params[:format])
+	# 	#raise "hello"
+	# 	#@foods = Food.active.includes(:variants)
+	# 	#form_info
+	# end
+	def category
+		@category = Category.find(params[:id])
 		form_info
 	end
-
+	
 	def show
 		@food = Food.active.find(params[:id])
 		form_info

@@ -24,7 +24,7 @@
 										<!-- Image for menu item -->
 										<%= image_tag category.category_image.url,class: "img-responsive"%>
 										<!-- Menu title / Heading -->
-										<h3><%= category.title%></h3>
+										<h3><%= link_to category.title,category_food_path(category)%></h3>
 										<!-- Border for above heading -->
 										<div class="title-border br-red"></div>
 									</div>

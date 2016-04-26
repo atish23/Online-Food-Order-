@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
                 :myaccount_tab,
                 :select_countries,
                 :customer_confirmation_page_view,
-                :sort_direction
+                :sort_direction,
+                :category_header
                 #:is_production_simulation,
                 #:search_product,
                 #:product_types,
@@ -70,7 +71,9 @@ protected
     !current_user
   end
 
-
+  def category_header
+    @category = Category.all
+  end
 
   def session_cart
     return @session_cart if defined?(@session_cart)

@@ -1783,7 +1783,465 @@ div.ppt { display:none !important; }
 .component-content .dropdown-menu{ top: 40px }
 .component-content .dropdown-menu:after { left: 35px; }
 .component-content .dropdown-menu:before { margin-right: -3px; left: 35px; }
- 
+ /* main content */
+
+.main-content .promo {margin-top: 30px;}
+.main-content .default-head {
+	margin: 0 auto;
+	margin-bottom: 30px;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 10px 12px;
+	color: #fff;
+}
+
+.sale-item {
+	position: relative;
+	max-width: 400px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	padding: 20px;
+	border: 1px solid #ddd;
+	box-shadow: 1px 1px 2px #aaa;
+	overflow: hidden;
+	background: #fff;
+}
+
+.sale-item .hot {
+	top: 15px;
+	left: 15px;
+}
+
+.sale-item .media-1, .sale-item .media-2,
+.sale-item .media-3 {
+	position: absolute;
+	right: 15px;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 10px;
+	background: #fff;
+	color: #fff;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: inset 0 0 0 1px #ddd;
+	opacity: 0;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}
+
+.sale-item .media-1 {
+	top: 15px;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	transition-delay: 0s;
+} 
+
+.sale-item .media-2 {
+	top: 50px;
+	-webkit-transition-delay: 0.2s;
+	-moz-transition-delay: 0.2s;
+	-ms-transition-delay: 0.2s;
+	-o-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.sale-item .media-3 {
+	top: 85px;
+	-webkit-transition-delay: 0.4s;
+	-moz-transition-delay: 0.4s;
+	-ms-transition-delay: 0.4s;
+	-o-transition-delay: 0.4s;
+	transition-delay: 0.4s;
+}
+
+
+.sale-item:hover .media-1 {
+	opacity: 1;
+	-webkit-transition-delay: 0s;
+	-moz-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	-o-transition-delay: 0s;
+	transition-delay: 0s;
+} 
+
+.sale-item:hover .media-2 {
+	opacity: 1;
+	-webkit-transition-delay: 0.2s;
+	-moz-transition-delay: 0.2s;
+	-ms-transition-delay: 0.2s;
+	-o-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.sale-item:hover .media-3 {
+	opacity: 1;
+	-webkit-transition-delay: 0.4s;
+	-moz-transition-delay: 0.4s;
+	-ms-transition-delay: 0.4s;
+	-o-transition-delay: 0.4s;
+	transition-delay: 0.4s;
+}
+
+.sale-item img {
+	width: 100%;
+	max-width: 300px;
+	margin: 0 auto;
+}
+	
+.sale-item h3 {
+	margin-top: 0;
+	font-size: 16px;
+}
+
+.sale-item .details {
+	display: block;
+	padding: 0;
+	margin: 0;
+	font-size: 13px;
+	line-height: 24px;
+	font-style: italic;
+}
+
+.sale-item .cart-btn {
+	margin-top: 15px;
+}
+
+.sale-item .cart-btn .btn {
+	position: relative;
+	display: inline-block;
+	padding: 0 15px;
+	padding-left: 95px;
+	font-size: 13px;
+	line-height: 32px;
+	text-align: right
+}
+
+.sale-item .cart-btn .btn .price {
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	width: 80px;
+	height: 34px;
+	line-height: 34px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	font-weight: 700;
+}
+
+/* popular item slider */
+
+.popular-sale .carousel-control {
+	position: absolute;
+	display: inline-block;
+	top: 100%;
+	margin-top: -10px;
+	width: 20px;
+	text-align: center;
+	font-size: 18px;
+	text-shadow: none;
+	background: transparent;
+	opacity: 1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+
+.popular-sale .carousel-control.left,
+.popular-sale .carousel-control.right { left: auto; right: 50%; }
+.popular-sale .carousel-control.right{margin-right: -25px;}
+.popular-sale .carousel-control.left {margin-right: 5px;}
+.popular-sale .carousel .item {padding: 0 5px;}
+.popular-sale .sale-item {text-align: center;}
+
+/* subscribe */
+
+.subscribe {
+	margin-bottom: 60px;
+	margin-top: 30px;
+	padding: 25px;
+	border: 1px solid #ddd;
+	box-shadow: 1px 1px 2px #aaa;
+	background: #fff url('../img/witewall_3.png') repeat;
+}
+
+.subscribe .app-store a {
+	display: inline-block;
+	margin-right: 15px;
+	margin-bottom: 10px;
+	width: 45px;
+	height: 45px;
+	line-height: 43px;
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	box-shadow: inset 0px 0px 5px #ddd;
+	border: 1px solid #d9d9d9;
+	border-radius: 50px;
+}
+
+.subscribe .app-store h6 {
+	margin-bottom: 0;
+	line-height: 20px;
+}
+
+.subscribe .subscribe-form h5 {
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 24px;
+}
+
+.subscribe .subscribe-form p {
+	margin-bottom: 5px;
+	line-height: 24px;
+	font-style: italic;
+}
+
+/* inner pages */
+
+.inner-banner {	
+	padding: 50px 0;
+	background: #eee url('../img/banner/inner-banner.jpg') no-repeat center center;
+	background-size: 1580px 300px;
+	text-align: center;
+}
+
+.inner-banner h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+	color: #fff;
+	font-size: 40px;
+	text-transform: uppercase;
+}
+
+.inner-banner .breadcrumb {
+	margin-bottom: 0;
+	padding: 0;
+	background: transparent;
+}
+
+.inner-banner .breadcrumb li.active {color: #e5e5e5;}
+.inner-banner .breadcrumb a {
+	color: #fff;
+}
+
+/* inner content */
+
+.inner-content {
+	margin-bottom: 30px;
+	padding-top: 50px;
+}
+
+.inner-content .navi {
+	max-width: 400px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+	border: 1px solid #ddd;
+	border-bottom: 0;
+	border-top: 0;
+	box-shadow: 0 1px 2px #ddd;
+}
+
+.inner-content .navi h3 {
+	margin: 0;
+	font-size: 14px;
+	padding: 12px 14px;
+	color: #fff;
+}
+
+.inner-content .navi ul {margin-bottom: 0;}
+.navi ul li a {
+	display: block;
+	padding: 12px 14px;
+	background: #fafafa;
+	border-bottom: 1px solid #ddd;
+	-webkit-transition: all 0.25s ease-in-out;
+	-moz-transition: all 0.25s ease-in-out;
+	-ms-transition: all 0.25s ease-in-out;
+	-o-transition: all 0.25s ease-in-out;
+	transition: all 0.25s ease-in-out;
+}
+
+.navi ul li a i {
+	width: 14px;
+	margin-right: 7px;
+	font-size: 14px;
+}
+
+.navi ul li a:hover {
+	padding-left: 18px;
+	background: #f5f5f5;
+	border-bottom-color: #ccc;
+}
+
+.navi ul li.open > a {
+	padding-left: 18px;
+	background: #f5f5f5;
+	border-bottom-color: #ccc;
+}
+
+.navi ul li ul {
+	display: none;
+	border-bottom: 1px solid #bbb;
+	padding-top: 4px;
+	padding-bottom: 8px;
+}
+
+.navi ul li ul li {
+	display: block;
+	padding-left: 30px;
+	padding-top: 3px;
+	background: #fff;
+}
+
+.navi ul li ul li:last-child{border-bottom: 0;}
+.navi ul li ul li label {
+	margin-bottom: 0;
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.navi ul li ul li label input {
+  position: relative;
+  top: 2px;
+	display: inline-block;
+	margin-right: 7px;
+}
+
+/* sideber promo */
+
+.side-promo {
+	margin-bottom: 15px;
+	padding-top: 15px;
+	border-top: 1px dashed #ddd;
+	background: #fff;
+}
+.side-promo img {
+	width: 100%;
+	max-width: 50px;
+	float: left;
+}
+.side-promo h3,
+.side-promo p, .side-promo .price {
+	margin-left: 65px;
+}
+.side-promo h3 {
+	margin-top: 0;
+	margin-bottom: 3px;
+	font-size: 14px;
+}
+
+.side-promo p {
+	font-size: 12px;
+	line-height: 20px;
+	font-style: italic;
+}
+
+.inner-content .inner-main h2 {
+	margin-top: 0;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+	font-size: 18px;
+	border-bottom: 1px solid #ddd;
+}
+
+.account .user {
+	width: 100%;
+	max-width: 200px;
+	box-shadow: 1px 1px 3px #aaa;
+	float: left;
+}
+
+.account .account-details {
+	margin-left: 225px;
+}
+
+.account .account-details h3 {
+	margin-top: 0;
+	font-size: 16px;
+}
+
+.account .account-details address {
+	display: block;
+	margin: 0;
+	font-size: 14px;
+	line-height: 23px;
+}
+
+.account .account-details .a-phone {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	padding: 0;
+	font-size: 14px;
+	line-height: 23px;
+}
+
+.account .account-details .a-phone i {
+	display: inline-block;
+	width: 14px;
+	margin-right: 5px;
+}
+
+.account .a-table {
+	margin-top: 30px; 
+	margin-bottom: 30px;
+}
+.account .a-table .table {margin-bottom: 0;}
+.account .a-table caption {
+	padding: 0;
+	padding-bottom: 10px;
+	font-weight: 700;
+	border-bottom: 1px solid #ddd;
+}
+.inner-main .edit-form {margin-bottom: 30px;}
+.inner-main .edit-form form label {
+	font-size: 13px;
+	color: #888;
+}
+
+.account h4 {
+	margin-top: 0;
+	margin-bottom:15px;
+	font-size: 16px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.conf-message {margin-bottom: 30px;}
+.conf-message h6 {
+	margin-top: 0;
+}
+
+.inner-main .login {
+	margin-top: 30px;
+	padding: 25px;
+	background: #fff url('../img/witewall_3.png') repeat;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 2px #ddd;
+}
+
+.inner-main .login h3 {
+	margin-top:	0;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	font-size: 18px;
+	border-bottom: 1px solid #ddd;
+}
+
+.inner-main .login form label {color: #888;}
+
+.login .social { margin-bottom: 15px; text-align: center;}
+.login .social a, .login .social a:hover {color: #fff;}
+.login .social p {
+	font-weight: 700;
+	margin-bottom: 10px;
+}
 /*
  * Footer Section
  */
@@ -1944,6 +2402,7 @@ div.ppt { display:none !important; }
 	.inner-page .error-content h3{ font-size: 90px; }
 	.inner-page .error-content h3 span{ top: -30px; }
 	.inner-page .checkout .sidebar-item h5 { margin-bottom: 5px; font-size: 18px;}
+	
 }
 /*************************
 *******Cart CSS******

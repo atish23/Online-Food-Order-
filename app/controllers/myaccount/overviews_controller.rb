@@ -1,6 +1,8 @@
 class Myaccount::OverviewsController < Myaccount::BaseController
   def show
   	@user = current_user
+    @addresses = current_user.shipping_addresses
+    @orders = current_user.orders
   end
 
   def edit

@@ -114,11 +114,7 @@ ActiveRecord::Schema.define(version: 20160420115130) do
   create_table "foods", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.float    "price"
-    t.string   "status"
     t.integer  "category_id"
-    t.integer  "prep_time"
-    t.text     "sales"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "food_image_file_name"
@@ -126,11 +122,9 @@ ActiveRecord::Schema.define(version: 20160420115130) do
     t.integer  "food_image_file_size"
     t.datetime "food_image_updated_at"
     t.string   "short_description"
-    t.float    "sale_price"
-    t.boolean  "active"
     t.text     "product_keywords"
     t.datetime "available_at"
-    t.string   "deleted_at"
+    t.datetime "deleted_at"
     t.string   "meta_keywords"
     t.string   "meta_description"
     t.boolean  "featured"

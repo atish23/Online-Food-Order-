@@ -6,7 +6,18 @@ class FoodsController < ApplicationController
 	# 	#form_info
 	# end
 	def category
-		@category = Category.find(params[:id])
+	    products = Food.active.includes(:variants)
+	    #raise "hello"
+	    product_types = nil
+	    if params[:id].present? && product_type = Category.find_by_id(params[:id])
+	    	#product_types = product_type.self_and_descendants.map(&:id)
+	        product_types = product_type
+	    end
+	    if product_types
+	      @products = products.where(category_id: product_types)
+	    else
+	      @products = products
+	    end
 		form_info
 	end
 	
@@ -15,6 +26,7 @@ class FoodsController < ApplicationController
 		form_info
 		@cart_item.variant_id = @food.active_variants.first.try(:id)
 	end
+
 private
   def form_info
     @cart_item = CartItem.new

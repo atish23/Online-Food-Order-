@@ -21,7 +21,7 @@ h6 {
   color: #777777;
 }
 a {
-  color: #ffffff;
+  color: #777777;
 }
 a:hover {
   color: #555555;
@@ -496,4 +496,62 @@ a:hover {
 /****************/
 .totop a i {
   background: #f75353;
+}
+/* main content */
+.main-content {
+  /* recent sale item */
+  /* popular sale */
+  /* inner content */
+  /* site map */
+  /* contact page */
+}
+.main-content .recent-sale .sale-item .cart-btn .btn .price {
+  background: #e50a4a;
+}
+.main-content .recent-sale .sale-item .media-1,
+.main-content .recent-sale .sale-item .media-2,
+.main-content .recent-sale .sale-item .media-3 {
+  color: #e50a4a;
+}
+.main-content .popular-sale .sale-item .cart-btn .btn .price {
+  background: #e50a4a;
+}
+.main-content .popular-sale .carousel-control {
+  color: #e50a4a;
+}
+.main-content .or {
+  background: #e50a4a;
+}
+.main-content .navi h3 {
+  background: #e50a4a;
+}
+.main-content .navi ul li a:hover {
+  color: #e50a4a;
+}
+.main-content .navi ul li a:hover i {
+  color: #e50a4a;
+}
+.main-content .navi ul li.open a {
+  color: #e50a4a;
+}
+.main-content .side-promo h3 a span {
+  color: #e50a4a;
+}
+.main-content .item-details .nav-tabs li.active > a {
+  background: #e50a4a;
+}
+.main-content .item-details .nav-tabs li.active > a:focus {
+  background: #e50a4a;
+}
+.main-content .item-details .nav-tabs li.active > a:hover {
+  background: #e50a4a;
+}
+.main-content .site-map ul li i {
+  color: #e50a4a;
+}
+.main-content .contact-page .address i {
+  color: #e50a4a;
+}
+.main-content .contact-page .address .social i {
+  color: #ffffff;
 }

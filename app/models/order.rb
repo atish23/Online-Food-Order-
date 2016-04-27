@@ -126,30 +126,25 @@ class Order < ActiveRecord::Base
     update_inventory
   end
   def find_total(force = false)
-    #calculate_totals if self.calculated_at.nil? || order_items.any? {|item| (item.updated_at > self.calculated_at) }
-    #self.deal_time ||= Time.zone.now
-    #self.deal_amount = Deal.best_qualifing_deal(self)
     self.find_sub_total
-    #taxable_money     = (self.sub_total - deal_amount - coupon_amount) * ((100.0 + order_tax_percentage) / 100.0)
-    self.total        = self.sub_total  #(self.sub_total + shipping_charges - deal_amount - coupon_amount ).round_at( 2 )
-    #self.taxed_total  = (taxable_money + shipping_charges).round_at( 2 )
+    self.total  = self.sub_total
   end
 
   def find_sub_total
     self.total = 0.0
     order_items.each do |item|
-      self.total = self.total + item.item_total
+      self.total = self.total + item.price if !item.price.nil?
     end
     self.sub_total = self.total
   end
 
-  def taxed_amount
-    #(get_taxed_total - total).round_at( 2 )
-  end
+  # def taxed_amount
+  #   #(get_taxed_total - total).round_at( 2 )
+  # end
 
-  def get_taxed_total
-    taxed_total || find_total
-  end
+  # def get_taxed_total
+  #   taxed_total || find_total
+  # end
 
   # Turns out in order to determine the order.total_price correctly (to include coupons and deals and all the items)
   #     it is much easier to multiply the tax times to whole order's price.  This should work for most use cases.  It
@@ -159,9 +154,9 @@ class Order < ActiveRecord::Base
   #
   # @param none
   # @return [Float] tax rate  10.5% === 10.5
-  def order_tax_percentage
-    (!order_items.blank? && order_items.first.tax_rate.try(:percentage)) ? order_items.first.tax_rate.try(:percentage) : 0.0
-  end  
+  # def order_tax_percentage
+  #   (!order_items.blank? && order_items.first.tax_rate.try(:percentage)) ? order_items.first.tax_rate.try(:percentage) : 0.0
+  # end  
 
 
 

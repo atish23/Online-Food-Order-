@@ -9,8 +9,8 @@
     <div class='order-list-item ten'>
       <ul>
         <li><label>Number:</label>        <%= link_to order.number, myaccount_order_path(order) %></li>
-        <li><label>Amount:</label>        <%= number_to_currency( order.first_invoice_amount ) %></li>
-        <li><label>Status:</label>        <%= order.status %></li>
+        <li><label>Amount:</label>        <%= number_to_currency( order.find_total ) %></li>
+        <li><label>Status:</label>        <%= order.state %></li>
       </ul>
     </div>
     <hr/>

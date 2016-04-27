@@ -18,21 +18,23 @@
 			<div class="menu-container">
 				<div class="row">
 					<% @categories.each do |category|%>
-						<div class="col-md-4 col-sm-4">
-						<!-- Menu header -->
-							<div class="menu-head">
-							<!-- Image for menu item -->
-								<%= image_tag category.category_image.url,class: "img-responsive"%>
-								<!-- Menu title / Heading -->
-								<h3><%= link_to category.title,category_food_path(category)%></h3>
-								<!-- Border for above heading -->
-								<div class="title-border br-red"></div>
-							</div>
-							<!-- Menu item details -->
-							<div class="menu-details">
+						<%if category.foods.first%>
+							<div class="col-md-4 col-sm-4">
+							<!-- Menu header -->
+								<div class="menu-head">
+								<!-- Image for menu item -->
+									<%= image_tag category.category_image.url,class: "img-responsive"%>
+									<!-- Menu title / Heading -->
+									<h3><%= link_to category.title,category_food_path(category)%></h3>
+									<!-- Border for above heading -->
+									<div class="title-border br-red"></div>
+								</div>
+								<!-- Menu item details -->
+								<div class="menu-details">
 
-							</div><!-- / Menu details end -->
-						</div>
+								</div><!-- / Menu details end -->
+							</div>
+						<%end%>
 					<%end%>
 				</div>
 			</div> <!-- /Menu container end -->

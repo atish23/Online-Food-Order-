@@ -86,20 +86,21 @@
 													<li>
 														<div class="row">
 															<% category_header.each do |category|%>
-																<div class="col-md-4 col-sm-6">
-																	<!-- Menu Item -->
-																	<div class="menu-item">
-																		<!-- Heading -->
-																		<h3><%= category.title%></h3>
-																		<!-- Image -->
-																		<%= image_tag category.category_image.url, :class => "img-responsive",:alt => ""%>
-																		<!-- Paragraph -->
-																		<p><%= raw category.description.truncate(150)%></p>
-																		<!-- Button -->
-																		<%= link_to "View Menu",category_food_path(category),class: 'btn btn-danger btn-xs'%>
-																		
+																<% if category.foods.first%>
+																	<div class="col-md-4 col-sm-6">
+																		<!-- Menu Item -->
+																		<div class="menu-item">
+																			<!-- Heading -->
+																			<h3><%= category.title%></h3>
+																			<!-- Image -->
+																			<%= image_tag category.category_image.url, :class => "img-responsive",:alt => ""%>
+																			<!-- Paragraph -->
+																			<p><%= raw category.description.truncate(150)%></p>
+																			<!-- Button -->
+																			<%= link_to "View Menu",category_food_path(category),class: 'btn btn-danger btn-xs'%>
+																		</div>
 																	</div>
-																</div>
+																<%end%>
 															<%end%>
 														</div>
 													</li>

@@ -51,9 +51,6 @@ RailsAdmin.config do |config|
       field :name
       field :description, :ck_editor
       field :short_description, :ck_editor
-      field :price
-      field :prep_time
-      field :active
       field :category
       field :food_image
       # For RailsAdmin < 0.5.0

@@ -21,6 +21,8 @@ gem "paperclip", "~> 4.3"
 gem 'ckeditor'
 gem 'config'
 gem 'aasm'
+gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'byebug'

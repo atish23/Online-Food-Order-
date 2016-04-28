@@ -6,8 +6,10 @@
 						<!-- Shopping items content -->
 						<div class="shopping-content">
 							<div class="row">
-								<% @products.each do |food|%>
-									<%if food.active_variants.first%>
+								<%# @products.each do |food|%>
+								<%#= will_paginate @products %>
+									<% @products.each do |food| %>
+									<% if food.active_variants.first %>
 										<div class="col-md-3 col-sm-6">
 											<!-- Shopping items -->
 											<div class="shopping-item">
@@ -34,22 +36,27 @@
 									<%end%>
 								<%end%>
 							</div>
+
 							
+							<%#= will_paginate @products, renderer: BootstrapPagination::Rails %>
 							<!-- Pagination -->
 							<div class="shopping-pagination">
-								<ul class="pagination">
-									<li class="disabled"><a href="#">&laquo;</a></li>
-									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">&raquo;</a></li>
-								</ul>
+								<div class="pagination">
+  								<%= will_paginate @products, renderer: BootstrapPagination::Rails %>
 							</div>
+
+								<!-- <ul class="pagination">
+									<%#= will_paginate @products %>
+									<li class="previous_page disabled"><a href="#">&laquo;</a></li>
+									<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+
+									<li><a href="/foods/1/category?page=2" rel="next">2</a></li>
+									<li><a class="next_page" href="/foods/1/category?page=2" rel="next">&raquo;</a></li>
+								</ul> -->
+							</div> 
 							<!-- Pagination end-->
 						</div>
 					</div>
 				</div>
-				
+				</div>
 				<!-- Shopping End -->

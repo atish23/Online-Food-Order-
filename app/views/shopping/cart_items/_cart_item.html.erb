@@ -9,7 +9,7 @@
   </td>
 
   <td class="cart_quantity" field="<%= i %>">
-      <%= cart_items_form.number_field :quantity,size: '1',class: 'cart_quantity_input'%>
+      <%= cart_items_form.number_field :quantity,size: '1', min: 1 ,class: 'cart_quantity_input'%>
   </td>
 
   <td class="total_price_<%=i.to_s%>">

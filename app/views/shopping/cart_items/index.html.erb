@@ -37,7 +37,7 @@
           </table>
         </div>
           <% unless @cart_items.blank? %>
-            <%= cart_form.submit 'update', :class => 'btn btn-danger' %>
+            <%#= cart_form.submit 'update', :class => 'btn btn-danger' %>
             <%= cart_form.submit 'Checkout', {:checkout => 1, :class => 'btn btn-primary'} %>
             <div class="clear"></div>
           <% end %>

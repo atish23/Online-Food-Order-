@@ -14,9 +14,9 @@ class FoodsController < ApplicationController
 	        product_types = product_type
 	    end
 	    if product_types
-	      @products = products.where(category_id: product_types)
+	      @products = products.where(category_id: product_types).paginate(:page => params[:page], :per_page => 5)
 	    else
-	      @products = products
+	      @products = products.paginate(:page => params[:page], :per_page => 5)
 	    end
 		form_info
 	end

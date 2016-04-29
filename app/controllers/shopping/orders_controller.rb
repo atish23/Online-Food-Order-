@@ -61,9 +61,9 @@ class Shopping::OrdersController < Shopping::BaseController
     else
       session[:last_order] = nil
       if current_user.finished_orders.present?
-        redirect_to myaccount_order_url( current_user.finished_orders.last )
+        redirect_to myaccount_overview_url( current_user.finished_orders.last )
       elsif current_user
-        redirect_to myaccount_orders_url
+        redirect_to myaccount_overview_url
       end
     end
   end

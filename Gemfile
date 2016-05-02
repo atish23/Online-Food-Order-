@@ -23,7 +23,8 @@ gem 'config'
 gem 'aasm'
 gem 'will_paginate', '~> 3.1'
 gem 'will_paginate-bootstrap'
-
+gem 'toastr-rails'
+#gem 'jquery-form-validator-rails'
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3'

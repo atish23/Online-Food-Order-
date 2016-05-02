@@ -10,7 +10,7 @@ private
   def next_form(order)
     # if cart is empty
     if session_cart.shopping_cart_items.empty?
-      flash[:notice] = I18n.t('do_not_have_anything_in_your_cart')
+      flash[:warning] = "do_not_have_anything_in_your_cart"
       return foods_url
     ## If we are insecure
     elsif not_secure?

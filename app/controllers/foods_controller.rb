@@ -1,16 +1,8 @@
 class FoodsController < ApplicationController
-	# def index
-	# 	#@category = Category.find(params[:format])
-	# 	#raise "hello"
-	# 	#@foods = Food.active.includes(:variants)
-	# 	#form_info
-	# end
 	def category
 	    products = Food.active.includes(:variants)
-	    #raise "hello"
 	    product_types = nil
 	    if params[:id].present? && product_type = Category.find_by_id(params[:id])
-	    	#product_types = product_type.self_and_descendants.map(&:id)
 	        product_types = product_type
 	    end
 	    if product_types

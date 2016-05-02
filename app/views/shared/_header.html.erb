@@ -1,4 +1,3 @@
-<%#= render 'shared/cartmodal'%>
 <!-- Header Start -->
 			<div class="header">
 				<div class="container">
@@ -114,23 +113,12 @@
 													<li><a href="menu.html">Special Menu</a></li>
 												</ul>
 											</li>
-<!-- 																				<%# if current_user%>
-									<span><%#= current_user.email%>   <%#= link_to "SignOut", destroy_user_session_path,method: :delete%></span>
-									<%#else%>
-									<span><%#= link_to "SignIn",new_user_session_path%></span>
-									<%#end%> -->
-
 												<%if current_user%>
 													<li><%= link_to (image_tag 'nav-menu/signed_user.png' , :class => "img-responsive")+"My Profile" ,  myaccount_overview_path if current_user.present? %></li>
 													<li><%= link_to (image_tag 'nav-menu/Logout.png' , :class => "img-responsive")+"SignOut" ,  destroy_user_session_path,method: :delete if current_user.present? %></li>
 												<%else%>
 													<li><%= link_to (image_tag 'nav-menu/nav3.jpg' , :class => "img-responsive")+"SignIn" ,  new_user_session_path%></li>
 												<%end%>
-											<!-- <a href="gallery.html">
-											<%#= image_tag 'nav-menu/nav3.jpg', :class => "img-responsive",:alt => ""%> Gallery</a></li> -->
-<!-- 											<li>
-											<%#= link_to (image_tag 'nav-menu/nav6.jpg' , :class => "img-responsive")+"About" ,  about_us_path %>
-											 </li> -->
 										</ul>
 									</div><!-- /.navbar-collapse -->
 								</div><!-- /.container-fluid -->

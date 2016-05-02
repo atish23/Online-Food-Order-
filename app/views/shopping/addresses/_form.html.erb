@@ -1,6 +1,10 @@
 <!-- Inner Content -->
 <div class="inner-page padd">
-  <% if @shopping_address.errors.any? %>
+<!-- Checkout Start -->
+
+<div class="checkout">
+  <div class="container">
+    <% if @shopping_address.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
 
@@ -11,10 +15,6 @@
       </ul>
     </div>
   <% end %>
-<!-- Checkout Start -->
-
-<div class="checkout">
-  <div class="container">
   <!-- Heading -->
   <h4>Shipping & Billing Details</h4>
     <div class="row">
@@ -23,19 +23,19 @@
           <div class="form-group">
             <label for="inputName" class="col-md-2 control-label">FirstName</label>
             <div class="col-md-8">
-              <%= f.text_field :first_name,class: 'form-control', placeholder: 'FirstName' %>
+              <%= f.text_field :first_name,class: 'form-control', placeholder: 'FirstName',:required => true %>
             </div>
           </div>            
           <div class="form-group">
             <label for="inputEmail1" class="col-md-2 control-label">LastName</label>
             <div class="col-md-8">
-              <%= f.text_field :last_name,class: 'form-control', placeholder: 'LastName' %>
+              <%= f.text_field :last_name,class: 'form-control', placeholder: 'LastName' ,:required => true%>
             </div>
           </div>
           <div class="form-group">
             <label for="inputEmail1" class="col-md-2 control-label">City</label>
             <div class="col-md-8">
-              <%= f.text_field :city,class: 'form-control', placeholder: 'City' %>
+              <%= f.text_field :city,class: 'form-control', placeholder: 'City',:required => true %>
             </div>
           </div>
           <div class="form-group">
@@ -62,7 +62,7 @@
           <div class="form-group">
             <label for="inputAddress" class="col-md-2 control-label">Address1</label>
             <div class="col-md-8">
-              <%= f.text_area :address1,class: 'form-control',placeholder: 'Address1',rows: '3' %>
+              <%= f.text_area :address1,class: 'form-control',placeholder: 'Address1',rows: '3',:required => true %>
             </div>
           </div>           
           <div class="form-group">
@@ -75,7 +75,7 @@
             <label for="inputZip" class="col-md-2 control-label">Zip Code</label>
             <div class="col-md-8">
              <!--  <input type="text" class="form-control" id="inputZip" placeholder="Zip Code"> -->
-             <%= f.text_field :zip_code ,class: 'form-control',placeholder: 'Zip Code'%>
+             <%= f.text_field :zip_code ,class: 'form-control',placeholder: 'Zip Code',:required => true%>
             </div>
           </div>
           <div class="form-group">

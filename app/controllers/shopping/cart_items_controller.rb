@@ -20,7 +20,7 @@ class Shopping::CartItemsController < Shopping::BaseController
     if cart_item = session_cart.add_variant(vari, most_likely_user, qty)
       flash[:notice] = [I18n.t('out_of_stock_notice'), I18n.t('item_saved_for_later')].compact.join(' ') unless cart_item.shopping_cart_item?
       session_cart.save_user(most_likely_user)
-      redirect_to(shopping_cart_items_url)
+      redirect_to :back
     else
       variant = Variant.includes(:food).find_by_id(params[:cart_item][:variant_id])
       if variant

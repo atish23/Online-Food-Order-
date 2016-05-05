@@ -1,0 +1,38 @@
+<div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false">
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	<div class="modal-dialog">
+		<div class="modal-content">
+      <div class="modal-header">
+          <h4 class="modal-title">Choose Your Area</h4>
+      </div>
+			<div class="modal-body">
+				<div class="row">    
+				<%= form_tag(root_path, :method => "get", id: "search-form") do %>
+					<div class="col-xs-8 col-xs-offset-2">
+						<div class="input-group">
+							<div class="input-group-btn search-panel">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+							<span id="search_concept">Select City</span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+							<li><a href="#Nagpur">Nagpur</a></li>
+							<li><a href="#Mumbai">Mumbai</a></li>
+							</ul>
+							</div>
+							<!-- <input type="hidden" name="search_param" value="all" id="search_param">  -->        
+							<input type="text" class="form-control" name="x" required placeholder="Search term...">
+							<span class="input-group-btn">
+							<%= button_tag(type: 'submit', class: "btn btn-large btn-search btn-primary") do %>
+							 <i class="fa fa-search"></i> Order Now
+							<% end %>
+							</span>
+						</div>
+					</div>
+				<%end%>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

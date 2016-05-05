@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # resources :carts
   # resources :cart_items
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  mount RailsAdmin::Engine => '/admin1', as: 'rails_admin'
 
   devise_for :users 
   root 'static_pages#home'
@@ -19,7 +19,13 @@ Rails.application.routes.draw do
   end
   get 'users/:id' => 'users#show' , as: "users_show"
   #delete "carts/:item_id/", to: "carts#destroy", as: :cart_item_delete
-
+  namespace :admin do
+    namespace :history do
+      resources  :orders, only: [:index, :show] do
+        resources  :addresses, only: [:index, :show, :edit, :update, :new, :create]
+      end
+    end
+  end
 
   namespace :myaccount do
     resources :orders,        only: [:index, :show]

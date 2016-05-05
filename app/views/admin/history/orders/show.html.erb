@@ -1,0 +1,55 @@
+<div class="container">
+<div>
+  <b>Order Information:</b>
+  <div  id='order-items'
+        class='panel '>
+      <ul>
+            <li><label>Order Number:</label> <%= @order.number %></li>
+            <li><label>Customer:    </label> <%#= @order.name %></li>
+            <li><label>Email:       </label> <%= @order.email %></li>
+            <li><label>Completed at:</label> <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %></li>
+            <li><label>Shipped:     </label> Yes</li>
+      </ul>
+  </div>
+</div>
+
+<% if @order.order_items.size > 0 %>
+
+  <div>
+  <b>Items</b>
+    <div  id='order-items'
+          class=' panel '>
+
+            <% @order.order_items.each do |item| %>
+              <%= item.variant.food.name %> <%= number_to_currency item.total %><br/>
+            <% end %>
+    </div>
+  </div>
+
+<% end %>
+<div>
+  <b>Shipping Address</b>
+  <div  id='order-address'
+        class='panel '>
+            <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => @order.ship_address} %>
+            <br>
+            <p><%= link_to 'Change Address', admin_history_order_addresses_path(@order), :class => 'button green' %> <br>
+            (This will not change the shipments that have already been placed)</p>
+  </div>
+</div>
+<div>
+  <b>Invoices:</b>
+  <% @order.invoices.each do |invoice| %>
+
+      <div  id='order-invoices'
+            class=' panel'>
+          <ul class='vertical-list'>
+            <li><label>Number:</label> <%= invoice.number %> </li>
+            <li><label>State: </label><%= invoice.state %></li>
+            <li><label>at:</label> <%= I18n.localize(invoice.updated_at, :format => :us_time)%></li>
+            <li><label>Amount:</label> <%= number_to_currency invoice.amount %></li>
+          </ul>
+      </div>
+  <% end %>
+</div>
+</div>

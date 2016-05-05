@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 	def home
 		@categories = Category.all
+		@state = State.all
 	end
 
 

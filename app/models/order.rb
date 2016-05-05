@@ -197,6 +197,7 @@ class Order < ActiveRecord::Base
   # @param [String]  represents the order.number
   # @return [Order]
   def self.find_by_number(num)
+    raise "helldfo"
     find(id_from_number(num))##  now we can search by id which should be much faster
   end
 

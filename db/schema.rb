@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420115130) do
+ActiveRecord::Schema.define(version: 20160508075752) do
 
   create_table "address_types", force: :cascade do |t|
     t.string "name",        limit: 64, null: false
@@ -114,7 +114,11 @@ ActiveRecord::Schema.define(version: 20160420115130) do
   create_table "foods", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
+    t.float    "price"
+    t.string   "status"
     t.integer  "category_id"
+    t.integer  "prep_time"
+    t.text     "sales"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "food_image_file_name"
@@ -122,12 +126,22 @@ ActiveRecord::Schema.define(version: 20160420115130) do
     t.integer  "food_image_file_size"
     t.datetime "food_image_updated_at"
     t.string   "short_description"
+    t.float    "sale_price"
+    t.boolean  "active"
     t.text     "product_keywords"
     t.datetime "available_at"
-    t.datetime "deleted_at"
+    t.string   "deleted_at"
     t.string   "meta_keywords"
     t.string   "meta_description"
     t.boolean  "featured"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer  "count_on_hand",               default: 0
+    t.integer  "count_pending_to_customer",   default: 0
+    t.integer  "count_pending_from_supplier", default: 0
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   create_table "invoices", force: :cascade do |t|

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  count_on_hand: 1
+  count_pending_to_customer: 1
+  count_pending_from_supplier: 1
+
+two:
+  count_on_hand: 1
+  count_pending_to_customer: 1
+  count_pending_from_supplier: 1

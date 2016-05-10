@@ -30,7 +30,7 @@
           <tbody>
           <% @cart_items.each_with_index do |item, i| %>
           <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
-          <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+            <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
           <% end %>
           <% end %>
           </tbody>

@@ -19,8 +19,10 @@ class Shopping::CartItemsController < Shopping::BaseController
     
     if cart_item = session_cart.add_variant(vari, most_likely_user, qty)
       session_cart.save_user(most_likely_user)
-      flash[:success] = "Item added succesfully in cart"
-      redirect_to :back
+      #flash[:success] = "Item added succesfully in cart"
+        respond_to do |format|
+          format.js
+        end
     else
       variant = Variant.includes(:food).find_by_id(params[:cart_item][:variant_id])
       if variant
@@ -62,7 +64,9 @@ class Shopping::CartItemsController < Shopping::BaseController
   # DELETE /carts/1.xml
   def destroy
     session_cart.remove_variant(params[:variant_id]) if params[:variant_id]
-    redirect_to(shopping_cart_items_url)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

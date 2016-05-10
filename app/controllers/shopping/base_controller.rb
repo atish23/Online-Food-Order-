@@ -1,6 +1,5 @@
 class Shopping::BaseController < ApplicationController
   helper_method :session_order, :session_order_id
-
 private
 
   def next_form_url(order)

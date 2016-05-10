@@ -67,7 +67,7 @@ class Myaccount::AddressesController < Myaccount::BaseController
   def destroy
     @address = current_user.addresses.find(params[:id])
     @address.inactive!
-    flash[:danger] = "Successfully destroyed address."
+    flash[:warning] = "Successfully destroyed address."
     redirect_to myaccount_addresses_url
   end
 

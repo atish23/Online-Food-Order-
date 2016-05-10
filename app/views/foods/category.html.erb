@@ -28,7 +28,7 @@
 									<div class="item-hover br-red hidden-xs"></div>
 									<!-- <a class="link hidden-xs" href="#">Add to cart</a> -->											
 									<% a = @cart_item.variant_id = food.active_variants.first.try(:id)%>
-									<%= link_to "Add to cart",shopping_cart_items_path(:variant_id => a,:quantity => '1'),class: "link hidden-xs", :method => :post%>
+									<%= link_to "Add to cart",shopping_cart_items_path(:variant_id => a,:quantity => '1'),class: "link hidden-xs", :method => :post,:remote => true%>
 								</div>
 							</div>
 						<%end%>

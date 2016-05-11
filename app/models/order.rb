@@ -25,8 +25,8 @@ class Order < ActiveRecord::Base
   validates :user_id,     presence: true
   validates :email,       presence: true,
                           format:   { with: CustomValidators::Emails.email_validator } 
-  NUMBER_SEED = 1001001001000
-  CHARACTERS_SEED = 21
+  CHARACTERS_SEED = 20
+  NUMBER_SEED     = 2002002002000
 
   aasm column: :state do
     state :in_progress, initial: true
@@ -188,6 +188,7 @@ class Order < ActiveRecord::Base
   end
   
   def self.id_from_number(num)
+    #raise num.inspect
     num.to_i(CHARACTERS_SEED) - NUMBER_SEED
   end
 
@@ -197,7 +198,6 @@ class Order < ActiveRecord::Base
   # @param [String]  represents the order.number
   # @return [Order]
   def self.find_by_number(num)
-    raise "helldfo"
     find(id_from_number(num))##  now we can search by id which should be much faster
   end
 

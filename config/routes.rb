@@ -25,6 +25,10 @@ Rails.application.routes.draw do
         resources  :addresses, only: [:index, :show, :edit, :update, :new, :create]
       end
     end
+
+    namespace :inventory do
+      resources :overviews
+    end
   end
 
   namespace :myaccount do

@@ -27,12 +27,16 @@ gem 'toastr-rails'
 #gem 'jquery-form-validator-rails'
 group :development, :test do
   gem 'byebug'
-  gem 'sqlite3'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'database_cleaner'
 end
 
 group :development do
   gem 'web-console', '~> 2.0'
+  gem 'sqlite3'
   gem 'spring'
+  gem "autotest-rails-pure"
   gem "better_errors"
   gem "binding_of_caller"
 end
@@ -42,3 +46,14 @@ group :production do
 	gem 'rails_12factor', '~> 0.0.3'
 end
 
+group :test do
+  gem 'factory_girl'
+  gem 'factory_girl_rails'
+  gem 'mocha', :require => false
+  gem 'rspec-rails-mocha'
+  gem 'rspec-rails'
+
+  gem 'email_spec'
+  gem "faker"
+
+end

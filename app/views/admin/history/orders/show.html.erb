@@ -7,7 +7,7 @@
             <li><label>Order Number:</label> <%= @order.number %></li>
             <li><label>Customer:    </label> <%#= @order.name %></li>
             <li><label>Email:       </label> <%= @order.email %></li>
-            <li><label>Completed at:</label> <%= @order.completed_at ? I18n.localize(@order.completed_at, :format => :us_time) : '' %></li>
+            <li><label>Completed at:</label> <%= @order.completed_at%></li>
             <li><label>Shipped:     </label> Yes</li>
       </ul>
   </div>

@@ -1,4 +1,4 @@
-class Inventory < ActiveRecord::
+class Inventory < ActiveRecord::Base
   has_one :variant
 
   validate :must_have_stock

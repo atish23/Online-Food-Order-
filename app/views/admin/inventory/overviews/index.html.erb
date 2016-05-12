@@ -1,0 +1,31 @@
+<h3>Product Overview</h3>
+<% @foods.each do |food|%>
+	<table class="table-bordered">
+    <thead>
+      <tr  class='odd'>
+        <th colspan='3' class='column1_header' >
+          <%= food.name %></th>
+        <th>
+        &nbsp;<%#= link_to 'edit food', '#', :class => 'btn btn-success btn-sm', :style => 'margin:0;' %>
+        <%= link_to 'change inventory', admin_inventory_adjustment_path(food), :class => 'btn btn-success btn-sm', :style => 'margin:0;' %>
+        </th>
+      </tr>
+      <tr>
+        <th>SKU</th>
+        <th>price</th>
+        <th>Qty</th>
+        <!-- <th>description</th> -->
+      </tr>
+    </thead>
+
+		<tbody>
+			<% food.variants.each do |variant|%>
+				<tr>
+					<td><%= variant.sku %></td>
+					<td><%= variant.price %></td>
+					<td><%= variant.count_on_hand %></td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+<%end%>

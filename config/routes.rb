@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
     namespace :inventory do
       resources :overviews
+      resources :adjustments
     end
   end
 

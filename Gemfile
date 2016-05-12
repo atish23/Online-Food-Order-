@@ -36,7 +36,8 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'sqlite3'
   gem 'spring'
-  gem "autotest-rails-pure"
+  gem 'guard-rspec', require: false
+  gem 'guard-livereload', '~> 2.5', require: false
   gem "better_errors"
   gem "binding_of_caller"
 end

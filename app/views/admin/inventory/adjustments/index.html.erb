@@ -1,0 +1,16 @@
+<h3>Inventory Adjustments</h3>
+
+<div>
+  <table>
+    <thead>
+    <tr class='odd'>
+      <th class='column1_header'>Name</th>
+    </tr>
+    </thead>
+    <% for food in @foods %>
+      <tr class='<%= cycle("odd", "")%>'>
+        <td><%= link_to food.name, admin_inventory_adjustment_path(food) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

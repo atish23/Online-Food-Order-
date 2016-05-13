@@ -10,28 +10,14 @@ class Cart < ActiveRecord::Base
 
   accepts_nested_attributes_for :shopping_cart_items
 
-  # Adds all the item prices (not including taxes) that are currently in the shopping cart
-  #
-  # @param [none]
-  # @return [Float] This is a float in decimal form and represents the price of all the items in the cart
   def sub_total
     shopping_cart_items.map(&:total).sum
   end
 
-  # Adds the quantity of items that are currently in the shopping cart
-  #
-  # @param [none]
-  # @return [Integer] Quantity all the items in the cart
   def number_of_shopping_cart_items
     shopping_cart_items.map(&:quantity).sum
   end
 
-  # Call this method when you are checking out with the current cart items
-  # => these will now be order.order_items
-  # => the order can only add items if it is 'in_progress'
-  #
-  # @param [Order] order to insert the shopping cart variants into
-  # @return [order]  return order because teh order returned has a diffent quantity
   def add_items_to_checkout(order)
     if order.in_progress?
       order.order_items.map(&:destroy)
@@ -41,12 +27,6 @@ class Cart < ActiveRecord::Base
     order
   end
 
-  # Call this method when you want to add an item to the shopping cart
-  #
-  # @param [Integer, #read] variant id to add to the cart
-  # @param [User, #read] user that is adding something to the cart
-  # @param [Integer, #optional] ItemType id that is being added to the cart
-  # @return [CartItem] return the cart item that is added to the cart
   def add_variant(variant_id, customer, qty = 1, cart_item_type_id = ItemType::SHOPPING_CART_ID, admin_purchase = false)
     items = shopping_cart_items.where(variant_id: variant_id).to_a
     variant = Variant.where(id: variant_id).first

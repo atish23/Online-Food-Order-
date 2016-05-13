@@ -8,7 +8,7 @@
     </tr>
     </thead>
     <% for food in @foods %>
-      <tr class='<%= cycle("odd", "")%>'>
+      <tr>
         <td><%= link_to food.name, admin_inventory_adjustment_path(food) %></td>
       </tr>
     <% end %>

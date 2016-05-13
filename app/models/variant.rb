@@ -67,7 +67,7 @@ class Variant < ActiveRecord::Base
     "available"
   end
   def product_name
-    name? ? name : [product.name, sub_name].reject{ |a| a.strip.length == 0 }.join(' - ')
+    name? ? name : [food.name, sub_name].reject{ |a| a.strip.length == 0 }.join(' - ')
   end
 
   def sub_name

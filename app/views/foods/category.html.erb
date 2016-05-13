@@ -12,6 +12,7 @@
 								<!-- Shopping items -->
 								<div class="shopping-item">
 									<!-- Image -->
+									<h4>Available: <%= food.active_variants.first.inventory.count_on_hand%></h4>
 									<%= image_tag food.food_image.url ,class: "img-responsive"%>
 									<!-- Shopping item name / Heading -->
 									<h4 class="pull-left"><%=food.name.truncate(20)%></h4>

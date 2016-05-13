@@ -12,14 +12,13 @@ class Admin::Inventory::AdjustmentsController < Admin::BaseController
 
 	def update
 		@variant = Variant.find(params[:id])
-
 		if params[:variant][:qty_to_add].present?
 			if @variant.update_attributes(allowed_params)
 				flash[:notice] = "Inventory updated succesfully"
 				redirect_to admin_inventory_adjustment_url(@variant)
 			else
 				flash[:warning] = "Can not be updated"
-				render :edit
+				render :action => 'edit', :id => params[:id]
 			end
 		end
 	end

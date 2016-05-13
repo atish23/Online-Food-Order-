@@ -18,8 +18,7 @@ class Food < ActiveRecord::Base
 
   def self.active
     where("foods.deleted_at IS NULL OR foods.deleted_at > ?", Time.zone.now)
-    #  Add this line if you want the available_at to function
-    #where("products.available_at IS NULL OR products.available_at >= ?", Time.zone.now)
+
   end
 
   def active(at = Time.zone.now)
@@ -41,11 +40,6 @@ class Food < ActiveRecord::Base
     @price_range = active_variants.minmax {|a,b| a.price <=> b.price }.map(&:price)
   end
 
-  # Answers if the product has a price range or just one price.
-  #   if there is more than one price returns true
-  #
-  # @param [none]
-  # @return [Boolean] true == there is more than one price
   def price_range?
     !(price_range.first == price_range.last)
   end
@@ -58,7 +52,7 @@ class Food < ActiveRecord::Base
     def ensure_available
       if active? && deleted_at_changed?
         self.errors.add(:base, 'There must be active variants.')  if active_variants.blank?
-        #self.errors.add(:base, 'Variants must have inventory.')   unless active_variants.any?{|v| v.is_available? }
+        self.errors.add(:base, 'Variants must have inventory.')   unless active_variants.any?{|v| v.is_available? }
         self.deleted_at = deleted_at_was if active_variants.blank? || !active_variants.any?{|v| v.is_available? }
       end
     end

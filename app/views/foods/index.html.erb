@@ -1,0 +1,151 @@
+<ul class="filters">
+  <li><a href="#" id="filter" data-filter="*">All</a></li>
+  <% @category.each do |category|%>
+    <li><a href="#" id="filter" data-filter=".<%= category.title%>"><%= category.title%></a></li>
+  <%end%>
+</ul>
+<!-- <ul id="container">
+    <li class="Veg">SASS For Fun and Profit</li>
+    <li class="Non-Veg">Command-T for all</li>
+    <li class="css">Floats and stuff</li>
+    <li class="Special-Menu css">SASS And The Asset Pipeline</li>
+    <li class="vim css">Sass Syntax for Vim</li>
+    <li class="vim Special-Menu">Rails Directories Jumping in Vim</li>
+    <li class="vim">Mastering the Global Command</li>
+    <li class="Special-Menu">Rails Deployment on the Cheap</li>
+</ul> -->
+
+<!-- Inner Content -->
+<div class="inner-page padd">       
+  <!-- Shopping Start -->       
+  <div class="shopping">
+    <div class="container">
+      <!-- Shopping items content -->
+      <div class="shopping-content">
+        <div class="row" id="container">
+          <% @products.each do |food|%>
+            <%if food.active_variants.first%>
+            <%#= raise food.inspect%>
+              <div class="col-md-3 col-sm-6 <%= food.category.title%>">
+                <!-- Shopping items -->
+                <div class="shopping-item" >
+                  <!-- Image -->
+                  <h4>Available: <%= food.active_variants.first.inventory.count_on_hand%></h4>
+                  <%= image_tag food.food_image.url ,class: "img-responsive"%>
+                  <!-- Shopping item name / Heading -->
+                  <h4 class="pull-left"><%=food.name.truncate(20)%></h4>
+                    <span class="item-price pull-right"><i class="fa fa-inr" aria-hidden="true"></i>
+                    <%= food.price_range.first%></span>
+                  <div class="clearfix"></div>
+                  <!-- Paragraph -->
+                  <p><%= raw food.short_description.truncate(180)%></p>
+                  <!-- Buy now button -->
+                  <div class="visible-xs">
+                    <a class="btn btn-danger btn-sm" href="#">Buy Now</a>
+                  </div>
+                  <!-- Shopping item hover block & link -->
+                  <div class="item-hover br-red hidden-xs"></div>
+                  <!-- <a class="link hidden-xs" href="#">Add to cart</a> -->                     
+                  <% a = @cart_item.variant_id = food.active_variants.first.try(:id)%>
+                  <%= link_to "Add to cart",shopping_cart_items_path(:variant_id => a,:quantity => '1'),class: "link hidden-xs", :method => :post,:remote => true%>
+                </div>
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+  
+              <!-- Pagination -->
+              <div class="shopping-pagination">
+                <div class="pagination">
+                  <%= will_paginate @products, renderer: BootstrapPagination::Rails %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination end-->
+      </div>
+    </div>
+
+  </div>
+        
+        <!-- Shopping End -->
+<style type="text/css">
+	ul.filters { margin-bottom: 25px;}
+	ul.filters li { display: inline; margin-bottom: 25px;}
+
+/* per the isotope docs */
+/**** Isotope Filtering ****/
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+      -ms-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+      -ms-transition-property:     -ms-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+     -moz-transition-duration: 0s;
+      -ms-transition-duration: 0s;
+       -o-transition-duration: 0s;
+          transition-duration: 0s;
+}/**** Isotope filtering ****/
+
+.isotope-item {
+  z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+​
+</style>
+<%= javascript_include_tag 'http://isotope.metafizzy.co/jquery.isotope.min.js'%>
+<script type="text/javascript">
+	$(function(){
+    $container = $('#container');
+    var filterThem = function(selector) {
+         $container.isotope({ filter: selector, layoutMode: 'straightDown' });
+    };
+    $('a#filter').click(function(e){
+        var selector = $(this).attr('data-filter');
+        filterThem(selector);
+    });
+
+    filterThem("*");
+});
+</script>

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'static_pages/carriers', as: :carriers
   get 'static_pages/terms', as: :terms
   get 'static_pages/policy', as: :policy
-  resources :foods, except: [:index] do
+  resources :foods do
     member do
       get :category
     end

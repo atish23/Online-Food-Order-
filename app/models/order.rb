@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   include AASM
 
-  has_many :order_items, :dependent => :destroy
+  has_many :order_items, :inverse_of => :order, :dependent => :destroy
 
   has_many   :invoices
   has_many   :completed_invoices,   -> { where(state: ['authorized', 'paid']) },  class_name: 'Invoice'
@@ -13,7 +13,9 @@ class Order < ActiveRecord::Base
   belongs_to   :user
   belongs_to   :ship_address, class_name: 'Address'
   belongs_to   :bill_address, class_name: 'Address'
-
+  accepts_nested_attributes_for :bill_address, :allow_destroy => true
+  accepts_nested_attributes_for :ship_address, :allow_destroy => true
+  accepts_nested_attributes_for :order_items
   
   before_validation :set_email, :set_number
   after_create      :save_order_number

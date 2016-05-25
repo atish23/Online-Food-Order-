@@ -16,6 +16,7 @@ class Variant < ActiveRecord::Base
               :count_on_hand=,
               :count_pending_from_supplier=,
               :count_pending_from_supplier=, to: :inventory, allow_nil: false
+              
   ADMIN_OUT_OF_STOCK_QTY = 0
   OUT_OF_STOCK_QTY = 2
   LOW_STOCK_QTY = 6
@@ -91,6 +92,7 @@ class Variant < ActiveRecord::Base
   end
 
   def add_pending_to_customer(num = 1)
+
     if low_stock?
       inventory.lock!
       self.inventory.count_pending_to_customer = inventory.count_pending_to_customer.to_i + num.to_i

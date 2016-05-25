@@ -19,7 +19,7 @@ class Cart < ActiveRecord::Base
   end
 
   def add_items_to_checkout(order)
-    if order.in_progress?
+    if order
       order.order_items.map(&:destroy)
       order.order_items.reload
       items_to_add(order, shopping_cart_items)

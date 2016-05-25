@@ -10,11 +10,6 @@ class ApplicationController < ActionController::Base
                 :customer_confirmation_page_view,
                 :sort_direction,
                 :category_header
-                #:is_production_simulation,
-                #:search_product,
-                #:product_types,
-                #:current_user,
-                #:current_user_id,
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -96,18 +91,10 @@ protected
     end
     @session_cart
   end
-  ## The most likely user can be determined off the session / cookies or for now lets grab a random user
-  #   Change this method for showing products that the end user will more than likely like.
-  #
+
   def most_likely_user
     current_user ? current_user : current_user
   end
-
-  ## TODO cookie[:hadean_user_id] value needs to be encrypted ### Authlogic persistence_token might work here
-  # def random_user
-  #   return @random_user if defined?(@random_user)
-  #   @random_user = cookies[:hadean_uid] ? User.find_by_persistence_token(cookies[:hadean_uid]) : nil
-  # end
 
   def merge_carts
     if !!current_user
@@ -140,17 +127,17 @@ protected
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
-  def cc_params
-    {
-          :brand              => params[:type],
-          :number             => params[:number],
-          :verification_value => params[:verification_value],
-          :month              => params[:month],
-          :year               => params[:year],
-          :first_name         => params[:first_name],
-          :last_name          => params[:last_name]
-    }
-  end
+  # def cc_params
+  #   {
+  #         :brand              => params[:type],
+  #         :number             => params[:number],
+  #         :verification_value => params[:verification_value],
+  #         :month              => params[:month],
+  #         :year               => params[:year],
+  #         :first_name         => params[:first_name],
+  #         :last_name          => params[:last_name]
+  #   }
+  # end
 
   def expire_all_browser_cache
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
@@ -158,42 +145,6 @@ protected
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
   end
 
-  # def customer_confirmation_page_view
-  #   false
-  # end
 
-  # def pagination_page
-  #   params[:page] ||= 1
-  #   params[:page].to_i
-  # end
-
-  # def pagination_rows
-  #   params[:rows] ||= 25
-  #   params[:rows].to_i
-  # end
-
-  ###  Authlogic helper methods
-  # def current_user_session
-  #   return @current_user_session if defined?(@current_user_session)
-  #   @current_user_session = UserSession.find
-  # end
-
-  # def current_user
-  #   return @current_user if defined?(@current_user)
-  #   @current_user = current_user_session && current_user_session.record
-  # end
-
-  # def current_user_id
-  #   return @current_user_id if defined?(@current_user_id)
-  #   @current_user_id = current_user_session && current_user_session.record && current_user_session.record.id
-  # end
-
-  # def search_product
-  #   @search_product || Product.new
-  # end
-
-  # def is_production_simulation
-  #   false
-  # end
 
 end

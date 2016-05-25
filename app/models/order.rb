@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  include AASM
+  #include AASM
 
   has_many :order_items, :inverse_of => :order, :dependent => :destroy
 
@@ -29,30 +29,28 @@ class Order < ActiveRecord::Base
   CHARACTERS_SEED = 20
   NUMBER_SEED     = 2002002002000
 
-  aasm column: :state do
-    state :in_progress, initial: true
-    state :complete
-    state :paid 
-    state :canceled  
+  # aasm column: :state do
+  #   state :in_progress, initial: true
+  #   state :complete
+  #   state :paid 
+  #   state :canceled  
 
 
-    event :complete do
-      transitions to: :complete, from: :in_progress
-    end
+  #   event :complete do
+  #     transitions to: :complete, from: :in_progress
+  #   end
 
-    event :pay, after: :mark_items_paid do
-      transitions to: :paid, from: [:in_progress, :complete]
-    end  
+  #   event :pay, after: :mark_items_paid do
+  #     transitions to: :paid, from: [:in_progress, :complete]
+  #   end  
 
-  end
+  # end
 
   def mark_items_paid
     order_items.map(&:pay!)
   end
 
-  # def transaction_time
-  #   calculated_at || Timze.zone.now
-  # end
+
 
   def first_invoice_amount
     return '' if completed_invoices.empty? && canceled_invoices.empty?
@@ -91,11 +89,22 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def create_invoice(args,credited_amount)
+    invoice_statement = Invoice.new(order_id: self.id, amount: credited_amount, invoice_type: 'PURCHASE')
+    invoice_statement.save
+    invoices.push(invoice_statement)
+    if invoice_statement
+      self.order_complete!
+      Notifier.order_confirmation(self.id,invoice_statement.id).deliver_now
+    end
+  end
+
   def order_complete!
     self.state = 'complete'
-    self.completed_at = Timze.zone.now
+    self.completed_at = Time.zone.now
     update_inventory
   end
+
   def find_total(force = false)
     self.find_sub_total
     self.total  = self.sub_total
@@ -109,6 +118,9 @@ class Order < ActiveRecord::Base
     self.sub_total = self.total
   end
 
+  def amount_to_credit
+    [find_total].min.to_f
+  end
   def add_items(variant, quantity, state_id = nil)
     self.save! if self.new_record?
     quantity.times do
@@ -138,7 +150,8 @@ class Order < ActiveRecord::Base
   end
 
   def update_inventory
-    self.order_items.each { |item| item.variant.add_pending_to_customer }
+    #raise "hello"
+    self.order_items.each { |item| item.variant.substract_count_on_hand(1) }
   end
 
   def variant_ids
@@ -150,6 +163,7 @@ class Order < ActiveRecord::Base
     includes([{ship_address: :state},
               {bill_address: :state}])
   end
+
 private
   def item_prices
     order_items.collect{|item| item.adjusted_price }

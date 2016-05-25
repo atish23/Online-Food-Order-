@@ -1,0 +1,14 @@
+<%#= @order.find_total %>
+
+<h1>Hi <%= @user.firstname %>,</h1>
+<p>
+	Thanks you for your recent purchase. Below you will see your confirmation details.
+</p>
+
+<h4>Order Number: <%= @order.number%></h4>
+<ul>
+	<% @order.order_items.group_by(&:variant).each  do |variant,order_items|%>
+    <li><%= variant.product_name %>: Quantity <%= order_items.size %></li>
+  <% end %>
+    <li>Order Total (<%= number_to_currency @invoice.amount %>)</li>
+</ul>

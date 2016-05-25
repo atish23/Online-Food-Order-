@@ -9,7 +9,7 @@ private
   def next_form(order)
     # if cart is empty
     if session_cart.shopping_cart_items.empty?
-      flash[:warning] = "do_not_have_anything_in_your_cart"
+      flash[:warning] = "You don't have anything in cart"
       return foods_url
     ## If we are insecure
     elsif not_secure?
@@ -31,7 +31,8 @@ private
   def find_or_create_order
     return @session_order if @session_order
     if session[:order_id]
-      @session_order = current_user.orders.find(session[:order_id])     
+      @session_order = current_user.orders.include_checkout_objects.find(session[:order_id])
+      create_order if !@session_order
     else
       create_order
     end
@@ -39,7 +40,7 @@ private
   end
 
   def create_order
-      @session_order = current_user.orders.create(:number       => Time.now.to_i,
+    @session_order = current_user.orders.create(:number       => Time.now.to_i,
                                                 :ip_address   => request.env['REMOTE_ADDR'],
                                                 :bill_address => current_user.billing_address  )
     add_new_cart_items(session_cart.shopping_cart_items)

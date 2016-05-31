@@ -22,7 +22,7 @@ class Shopping::OrdersController < Shopping::BaseController
 
     address = @order.bill_address.cc_params
 
-    if response = @order.create_invoice({ email: @order.email, billing_address: address, ip: @order.ip_address},
+    if  @order.create_invoice({ email: @order.email, billing_address: address, ip: @order.ip_address},
                   @order.amount_to_credit)
 
       expire_all_browser_cache

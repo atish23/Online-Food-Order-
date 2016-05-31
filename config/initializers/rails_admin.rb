@@ -68,11 +68,20 @@ RailsAdmin.config do |config|
     end
   end
 
-    # To Hide Unwanted Tables from admin dashboard
-  # hidden_model = ['AddressType','Cart','CartItem','Invoice','ItemType','Shipment','ShippingCategory','ShippingMethod','ShippingZone']
-  #   hidden_model.each do |hidden|
-  #     config.model hidden do
-  #      visible false
-  #     end
-  #   end
+config.model 'OrderItem' do
+  object_label_method do
+  :custom_label_method
+  end
+end
+
+def custom_label_method
+  "#{variant.name}"
+end
+  #To Hide Unwanted Tables from admin dashboard
+  hidden_model = ['AddressType','Cart','CartItem','OrderItem','Invoice','ItemType','Shipment','ShippingCategory','ShippingMethod','ShippingZone']
+    hidden_model.each do |hidden|
+      config.model hidden do
+        visible false
+      end
+    end
 end

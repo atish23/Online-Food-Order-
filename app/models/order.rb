@@ -95,7 +95,7 @@ class Order < ActiveRecord::Base
     invoices.push(invoice_statement)
     if invoice_statement
       self.order_complete!
-      Notifier.order_confirmation(self.id,invoice_statement.id).deliver_now
+      #Notifier.order_confirmation(self.id,invoice_statement.id).deliver_now
     end
   end
 
